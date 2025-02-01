@@ -1,0 +1,101 @@
+{
+  "name": "angular-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
+  "sourceRoot": "apps/angular-app/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "options": {
+        "outputPath": "dist/apps/angular-app",
+        "index": "apps/angular-app/src/index.html",
+        "browser": "apps/angular-app/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/angular-app/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/angular-app/public"
+          }
+        ],
+        "styles": [
+          "apps/angular-app/@angular/material/prebuilt-themes/indigo-pink.css",
+          "apps/angular-app/node_modules/bootstrap/dist/css/bootstrap.min.css",
+          "apps/angular-app/node_modules/ngx-spinner/animations/ball-triangle-path.css",
+          "apps/angular-app/src/styles.scss"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kB",
+              "maximumError": "1MB"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kB",
+              "maximumError": "4kB"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/angular-app/src/environments/environment.ts",
+              "with": "apps/angular-app/src/environments/environment.development.ts"
+            }
+          ]
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "angular-app:build:production"
+        },
+        "development": {
+          "buildTarget": "angular-app:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n"
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "polyfills": ["zone.js", "zone.js/testing"],
+        "tsConfig": "apps/angular-app/tsconfig.spec.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/angular-app/public"
+          }
+        ],
+        "styles": [
+          "apps/angular-app/@angular/material/prebuilt-themes/azure-blue.css",
+          "apps/angular-app/src/styles.scss"
+        ],
+        "scripts": []
+      }
+    }
+  }
+}

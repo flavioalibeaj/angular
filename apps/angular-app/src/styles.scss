@@ -1,0 +1,44 @@
+// /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.snackbar-error {
+  .mdc-snackbar__surface {
+    background: #922b21 !important;
+  }
+
+  .mdc-button__label {
+    color: white;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.dialog-close-button {
+  margin-top: -0.5rem;
+}

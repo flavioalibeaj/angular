@@ -1,0 +1,32 @@
+table {
+  width: 100%;
+}
+
+.border-dotted {
+  border-bottom: 2px dotted #d5d8dc;
+}
+
+.half-opacity {
+  opacity: 0.6;
+}
+
+.mat-mdc-card-content:last-child {
+  padding-bottom: 0;
+}
+
+.detail-row {
+  height: 0;
+}
+
+.example-element-row > td {
+  // TODO fix borders
+  border-bottom-width: 0;
+}
+
+.hover:hover {
+  background-color: #ebedef;
+}
+
+.even {
+  background-color: #f2f3f4;
+}
