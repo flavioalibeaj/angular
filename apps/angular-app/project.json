@@ -22,13 +22,13 @@
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/angular-app/public"
+            "input": "public"
           }
         ],
         "styles": [
-          "apps/angular-app/@angular/material/prebuilt-themes/indigo-pink.css",
-          "apps/angular-app/node_modules/bootstrap/dist/css/bootstrap.min.css",
-          "apps/angular-app/node_modules/ngx-spinner/animations/ball-triangle-path.css",
+          "@angular/material/prebuilt-themes/indigo-pink.css",
+          "node_modules/bootstrap/dist/css/bootstrap.min.css",
+          "node_modules/ngx-spinner/animations/ball-triangle-path.css",
           "apps/angular-app/src/styles.scss"
         ],
         "scripts": []
@@ -87,11 +87,11 @@
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/angular-app/public"
+            "input": "public"
           }
         ],
         "styles": [
-          "apps/angular-app/@angular/material/prebuilt-themes/azure-blue.css",
+          "@angular/material/prebuilt-themes/azure-blue.css",
           "apps/angular-app/src/styles.scss"
         ],
         "scripts": []
