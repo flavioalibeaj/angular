@@ -13,10 +13,6 @@ export class GlobalErrorHandlerService implements ErrorHandler {
   readonly #translate = inject(TranslateService);
 
   handleError(error: Error): void {
-    console.log(error);
-    console.log(error.message);
-    console.log(error.stack);
-    console.log(error.name);
     const message = error.message || 'Unknown error';
     console.log({
       message: message,
