@@ -1,10 +1,4 @@
-import {
-  Component,
-  HostListener,
-  inject,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
 import {
   NavigationEnd,
   NavigationError,
@@ -12,7 +6,7 @@ import {
   Router,
   RouterOutlet,
 } from '@angular/router';
-import { EMPTY, filter, Subject, switchMap, takeUntil, tap, timer } from 'rxjs';
+import { EMPTY, filter, switchMap, tap, timer } from 'rxjs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
@@ -38,13 +32,11 @@ import { Title } from '@angular/platform-browser';
     >
   `,
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
   readonly #router = inject(Router);
   readonly #translateService = inject(TranslateService);
   readonly #spinnerService = inject(NgxSpinnerService);
   readonly #titleService = inject(Title);
-
-  readonly #unSub = new Subject<void>();
 
   // Listen on document visibility
   @HostListener('document:visibilitychange')
@@ -56,11 +48,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.#listenToRouteEvents();
     this.#setUpAppLanguage();
-  }
-
-  ngOnDestroy(): void {
-    this.#unSub.next();
-    this.#unSub.complete();
   }
 
   #listenToRouteEvents() {
@@ -92,8 +79,7 @@ export class AppComponent implements OnInit, OnDestroy {
           return event instanceof NavigationEnd
             ? timer(600).pipe(tap(() => this.#spinnerService.hide()))
             : EMPTY;
-        }),
-        takeUntil(this.#unSub)
+        })
       )
       .subscribe();
   }
