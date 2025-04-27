@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { MatFormComponent } from '../../../shared/components/mat-form/mat-form.component';
 import { RegisterService } from '../../services/register.service';
+import { MatFormComponent } from '../../../../shared/components/mat-form/mat-form.component';
 
 @Component({
   selector: 'app-register',

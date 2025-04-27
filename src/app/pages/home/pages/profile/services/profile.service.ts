@@ -1,12 +1,12 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpService } from '../../../../shared/services/http.service';
-import { PROFILE_ENDPOINTS } from '../../../../shared/endpoints/endpoints';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { ILoginResponse } from '../../../../auth/model/i-login-response.interface';
 import { ICreateProfile } from '../model/i-create-profile.interface';
-import { UserService } from '../../../../core/services/user.service';
-import { AuthService } from '../../../../core/services/auth.service';
+import { AuthService } from '../../../../../core/services/auth.service';
+import { UserService } from '../../../../../core/services/user.service';
+import { PROFILE_ENDPOINTS } from '../../../../../shared/endpoints/endpoints';
+import { HttpService } from '../../../../../shared/services/http.service';
 
 @Injectable({
   providedIn: 'root',

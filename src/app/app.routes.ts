@@ -1,13 +1,14 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
-import { createProfileGuard } from './home/guards/create-profile.guard';
+import { createProfileGuard } from './pages/home/guards/create-profile.guard';
 
 export const routes: Routes = [
   {
     path: 'auth',
     data: { openWhenAuthenticated: false },
     canActivate: [authGuard],
-    loadChildren: () => import('./auth/auth.routes').then((r) => r.authRoutes),
+    loadChildren: () =>
+      import('./pages/auth/auth.routes').then((r) => r.authRoutes),
   },
   {
     path: '',
@@ -17,8 +18,9 @@ export const routes: Routes = [
     },
     canActivate: [authGuard, createProfileGuard],
     loadComponent: () =>
-      import('./home/home.component').then((c) => c.HomeComponent),
-    loadChildren: () => import('./home/home.routes').then((r) => r.homeRoutes),
+      import('./pages/home/home.component').then((c) => c.HomeComponent),
+    loadChildren: () =>
+      import('./pages/home/home.routes').then((r) => r.homeRoutes),
   },
   {
     path: 'create-profile',
@@ -28,14 +30,14 @@ export const routes: Routes = [
       openWithProfileId: false,
     },
     loadComponent: () =>
-      import('./create-profile/create-profile.component').then(
+      import('./pages/create-profile/create-profile.component').then(
         (c) => c.CreateProfileComponent
       ),
   },
   {
     path: 'not-found',
     loadComponent: () =>
-      import('./not-found/not-found.component').then(
+      import('./pages/not-found/not-found.component').then(
         (c) => c.NotFoundComponent
       ),
   },

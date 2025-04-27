@@ -4,15 +4,15 @@ import { HttpService } from '../../shared/services/http.service';
 import { EMPTY, from, Observable, switchMap, take, tap } from 'rxjs';
 import { IApiResponse } from '../../shared/model/i-api-response.interface';
 import { AUTH_ENDPOINTS } from '../../shared/endpoints/endpoints';
-import { ILoginResponse } from '../../auth/model/i-login-response.interface';
-import { ILoginRequest } from '../../auth/model/i-login-request.interface';
-import { IRegisterRequest } from '../../auth/model/i-register-request.interface';
 import { UserService } from './user.service';
 import { IViewUser } from '../model/i-view-user.interface';
 import { jwtDecode } from 'jwt-decode';
 import { ITokenPayload } from '../model/i-token-payload.interface';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxPermissionsService } from 'ngx-permissions';
+import { ILoginResponse } from '../../pages/auth/model/i-login-response.interface';
+import { ILoginRequest } from '../../pages/auth/model/i-login-request.interface';
+import { IRegisterRequest } from '../../pages/auth/model/i-register-request.interface';
 
 @Injectable({
   providedIn: 'root',

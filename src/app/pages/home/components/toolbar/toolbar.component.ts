@@ -4,15 +4,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SidenavService } from '../../services/sidenav.service';
 import { MatMenuModule } from '@angular/material/menu';
-import { AuthService } from '../../../core/services/auth.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LowerCasePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import { InformationDialogComponent } from '../../../shared/components/information-dialog/information-dialog.component';
-import { IInformationDialogData } from '../../../shared/model/i-information-dialog-data';
 import { filter, tap } from 'rxjs';
-import { IFormResponse } from '../../../shared/model/i-form-response.interface';
+import { AuthService } from '../../../../core/services/auth.service';
+import { InformationDialogComponent } from '../../../../shared/components/information-dialog/information-dialog.component';
+import { IFormResponse } from '../../../../shared/model/i-form-response.interface';
+import { IInformationDialogData } from '../../../../shared/model/i-information-dialog-data';
 
 @Component({
   selector: 'app-toolbar',

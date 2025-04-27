@@ -6,13 +6,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
-import { AuthService } from '../../../core/services/auth.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { switchMap, take } from 'rxjs';
-import { IFormModel } from '../../../shared/model/i-form-model.interface';
-import { MatFormComponent } from '../../../shared/components/mat-form/mat-form.component';
-import { IFormResponse } from '../../../shared/model/i-form-response.interface';
-import { FieldType } from '../../../shared/model/field-type.enum';
+import { AuthService } from '../../../../core/services/auth.service';
+import { MatFormComponent } from '../../../../shared/components/mat-form/mat-form.component';
+import { FieldType } from '../../../../shared/model/field-type.enum';
+import { IFormModel } from '../../../../shared/model/i-form-model.interface';
+import { IFormResponse } from '../../../../shared/model/i-form-response.interface';
 
 @Component({
   selector: 'app-login',

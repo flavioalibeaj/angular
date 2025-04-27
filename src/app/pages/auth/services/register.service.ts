@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { IFormModel } from '../../shared/model/i-form-model.interface';
-import { FieldType } from '../../shared/model/field-type.enum';
 import { Validators } from '@angular/forms';
-import { IFormResponse } from '../../shared/model/i-form-response.interface';
-import { AuthService } from '../../core/services/auth.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { FieldType } from '../../../shared/model/field-type.enum';
+import { IFormModel } from '../../../shared/model/i-form-model.interface';
+import { IFormResponse } from '../../../shared/model/i-form-response.interface';
 
 @Injectable()
 export class RegisterService {

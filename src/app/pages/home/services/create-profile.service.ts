@@ -1,10 +1,10 @@
 import { inject, Injectable } from '@angular/core';
-import { IFormModel } from '../../shared/model/i-form-model.interface';
-import { FieldType } from '../../shared/model/field-type.enum';
 import { BehaviorSubject, take } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ProfileService } from '../pages/profile/services/profile.service';
+import { IFormModel } from '../../../shared/model/i-form-model.interface';
+import { FieldType } from '../../../shared/model/field-type.enum';
 
 @Injectable()
 export class CreateProfileService {
