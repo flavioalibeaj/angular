@@ -26,7 +26,7 @@ import { IFormResponse } from '../../../shared/model/i-form-response.interface';
     LowerCasePipe,
   ],
   template: `
-    <mat-toolbar color="primary">
+    <mat-toolbar>
       <button
         mat-icon-button
         aria-label="Icon-button with menu icon"
@@ -76,7 +76,7 @@ import { IFormResponse } from '../../../shared/model/i-form-response.interface';
           <span class="fi fi-{{ lang.img | lowercase }}"></span>
           {{ lang.label | translate }}
           @if (translateService.currentLang == lang.code) {
-          <mat-icon color="primary">done</mat-icon>
+          <mat-icon>done</mat-icon>
           }
         </div>
       </button>

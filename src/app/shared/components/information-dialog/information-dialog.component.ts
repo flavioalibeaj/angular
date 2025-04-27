@@ -48,14 +48,14 @@ import { TranslatePipe } from '@ngx-translate/core';
       <mat-divider class="mt-3" />
       <mat-card-actions align="end" class="d-flex gap-2">
         @if (!dialogData.hideSaveButton) {
-        <button mat-raised-button color="primary" (click)="save()">
+        <button mat-raised-button (click)="save()">
           <mat-icon>{{ dialogData.saveButtonIcon ?? 'check' }}</mat-icon>
           {{
             (dialogData.saveButtonText | async) ?? ('GENERAL.SAVE' | translate)
           }}
         </button>
         }
-        <button mat-stroked-button color="warn" mat-dialog-close>
+        <button mat-stroked-button mat-dialog-close>
           <mat-icon>{{ dialogData.cancelButtonIcon ?? 'close' }}</mat-icon>
           {{
             (dialogData.cancelButtonText | async) ??

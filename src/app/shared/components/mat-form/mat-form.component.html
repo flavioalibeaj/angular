@@ -44,14 +44,14 @@
     }
 
     @if (showCancelBtn()) {
-    <button mat-raised-button color="warn" mat-dialog-close>
+    <button mat-raised-button mat-dialog-close>
       <mat-icon>{{cancelButtonIcon()}}</mat-icon>
       {{cancelButtonText() | translate}}
     </button>
     }
     @if (!hideSubmitBtn()) {
-    <button mat-raised-button type="submit" color="primary" [disabled]="!formGroup().valid"
-      [class]="submitButtonClass()" (click)="onSubmit()">
+    <button mat-raised-button type="submit" [disabled]="!formGroup().valid" [class]="submitButtonClass()"
+      (click)="onSubmit()">
       <mat-icon> {{submitButtonIcon()}} </mat-icon>
       {{submitButtonText() | translate}}
     </button>

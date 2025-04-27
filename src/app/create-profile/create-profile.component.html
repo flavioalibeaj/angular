@@ -35,7 +35,7 @@
       </form>
     </mat-card-content>
     <mat-card-actions align="end">
-      <button mat-raised-button color="primary" [disabled]="!createProfileService.fg.valid"
+      <button mat-raised-button [disabled]="!createProfileService.fg.valid"
         (click)="createProfileService.createProfile()">
         <mat-icon>check</mat-icon>
         {{"FORM.SUBMIT" | translate}}
