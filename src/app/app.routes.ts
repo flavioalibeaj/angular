@@ -1,14 +1,16 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { createProfileGuard } from './pages/home/guards/create-profile.guard';
+import { authRoutes } from './pages/auth/auth.routes';
 
 export const routes: Routes = [
   {
     path: 'auth',
     data: { openWhenAuthenticated: false },
     canActivate: [authGuard],
-    loadChildren: () =>
-      import('./pages/auth/auth.routes').then((r) => r.authRoutes),
+    loadComponent: () =>
+      import('./pages/auth/pages/auth.component').then((c) => c.AuthComponent),
+    children: authRoutes,
   },
   {
     path: '',

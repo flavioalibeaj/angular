@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, viewChild } from '@angular/core';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import { MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -17,7 +17,8 @@ import { IFormResponse } from '../../../../shared/model/i-form-response.interfac
 @Component({
   selector: 'app-login',
   imports: [
-    MatCardModule,
+    MatCardHeader,
+    MatCardTitle,
     MatButtonModule,
     MatIconModule,
     ReactiveFormsModule,
@@ -27,16 +28,30 @@ import { IFormResponse } from '../../../../shared/model/i-form-response.interfac
     TranslatePipe,
     MatFormComponent,
   ],
-  templateUrl: './login.component.html',
-  styles: [
-    `
-      mat-card {
-        width: 350px;
-        max-width: 350px;
-        justify-content: space-between;
-      }
-    `,
-  ],
+  template: `
+    <mat-card-header class="justify-content-center">
+      <mat-card-title>{{ 'AUTH.LOGIN' | translate }}</mat-card-title>
+    </mat-card-header>
+    <app-mat-form
+      [formModel]="formModel"
+      formClass="px-3 mt-4 d-flex flex-column justify-content-center"
+      actionsClass="flex-column gap-3"
+      submitButtonText="AUTH.LOGIN"
+      submitButtonIcon="login"
+      submitButtonClass="w-100"
+      [contentProjection]="true"
+      (formSubmit)="login($event)"
+    >
+      <span class="text-danger" role="button" routerLink="../register">
+        <a>
+          {{ 'AUTH.NO_ACC_REGISTER' | translate }}
+          <b class="text-decoration-underline">{{
+            'AUTH.HERE' | translate
+          }}</b></a
+        >
+      </span>
+    </app-mat-form>
+  `,
 })
 export class LoginComponent implements OnInit {
   readonly #authService = inject(AuthService);
