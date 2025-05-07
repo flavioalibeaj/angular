@@ -7,14 +7,14 @@ body {
 }
 
 html {
-  color-scheme: light;
   @include mat.all-component-themes(theme.$light-theme);
   @include mat.system-level-colors(theme.$light-theme);
   // @include mat.theme(theme.$light-theme);
 }
 
-body.dark-mode {
-  color-scheme: dark;
+body.dark {
+  @include mat.all-component-colors(theme.$dark-theme);
+  @include mat.system-level-colors(theme.$dark-theme);
 }
 
 body {

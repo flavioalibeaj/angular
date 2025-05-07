@@ -136,12 +136,6 @@ $_rest: (
 $primary-palette: map.merge(map.get($_palettes, primary), $_rest);
 $tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);
 
-$color: (
-  theme-type: light,
-  primary: $primary-palette,
-  tertiary: $tertiary-palette,
-);
-
 $typography: (
   plain-family: "Rubik",
   bold-weight: 800,
@@ -151,14 +145,22 @@ $typography: (
 
 $light-theme: mat.define-theme(
   (
-    color: $color,
+    color: (
+      theme-type: light,
+      primary: $primary-palette,
+      tertiary: $tertiary-palette,
+    ),
     typography: $typography,
   )
 );
 
-// $dark-theme: mat.define-theme((color: (theme-type: dark,
-//         primary: $primary-palette,
-//         tertiary: $tertiary-palette,
-//       ),
-//       typography: $typography,
-//     ));
+$dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: $primary-palette,
+      tertiary: $tertiary-palette,
+    ),
+    typography: $typography,
+  )
+);
