@@ -1,30 +1,58 @@
 @use "@angular/material" as mat;
 @use "./themes.scss" as themes;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
 }
 
-html {
-  @include mat.all-component-themes(themes.$light-theme);
-  @include mat.system-level-colors(themes.$light-theme);
-}
-
 body {
+  color-scheme: light;
   background: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
 
   &.dark {
-    @include mat.all-component-colors(themes.$dark-theme);
-    @include mat.system-level-colors(themes.$dark-theme);
+    color-scheme: dark;
   }
-}
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  // // Custom theme implemtation
+  // &.default {
+  //   @include mat.all-component-themes(themes.$light-theme);
+  //   @include mat.system-level-colors(themes.$light-theme);
+
+  //   &.dark {
+  //     @include mat.all-component-colors(themes.$dark-theme);
+  //     @include mat.system-level-colors(themes.$dark-theme);
+  //   }
+  // }
+
+  @each $name,
+    $palette
+      in (
+        azure: mat.$azure-palette,
+        red: mat.$red-palette,
+        green: mat.$green-palette,
+        blue: mat.$blue-palette,
+        yellow: mat.$yellow-palette,
+        cyan: mat.$cyan-palette,
+        magenta: mat.$magenta-palette,
+        orange: mat.$orange-palette,
+        chartreuse: mat.$chartreuse-palette,
+        spring-green: mat.$spring-green-palette,
+        violet: mat.$violet-palette,
+        rose: mat.$rose-palette
+      )
+  {
+    &.#{$name} {
+      @include themes.themed-palette($palette);
+    }
+  }
 }
 
 .snackbar-error {
