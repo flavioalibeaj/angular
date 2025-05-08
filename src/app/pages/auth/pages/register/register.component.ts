@@ -29,7 +29,7 @@ import { MatFormComponent } from '../../../../shared/components/mat-form/mat-for
       [contentProjection]="true"
       (formSubmit)="registerService.register($event)"
     >
-      <span class="text-danger" role="button" routerLink="../login">
+      <span class="tertiary-color" role="button" routerLink="../login">
         <a
           >{{ 'AUTH.ACC_LOGIN' | translate }}
           <b class="text-decoration-underline">{{

@@ -42,7 +42,7 @@ import { IFormResponse } from '../../../../shared/model/i-form-response.interfac
       [contentProjection]="true"
       (formSubmit)="login($event)"
     >
-      <span class="text-danger" role="button" routerLink="../register">
+      <span class="tertiary-color" role="button" routerLink="../register">
         <a>
           {{ 'AUTH.NO_ACC_REGISTER' | translate }}
           <b class="text-decoration-underline">{{
