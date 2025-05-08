@@ -30,17 +30,12 @@ $dark-theme: mat.define-theme(
   )
 );
 
-.azure-palette {
-  color-scheme: light;
+@mixin themed-palette($palette, $typography: Rubik, $density: 0) {
   @include mat.theme(
     (
-      color: mat.$azure-palette,
-      typography: Rubik,
-      density: 0,
+      color: $palette,
+      typography: $typography,
+      density: $density,
     )
   );
-
-  &.dark {
-    color-scheme: dark;
-  }
 }
