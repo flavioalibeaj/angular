@@ -20,7 +20,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     this.#snackbar.openFromComponent(SnackBarComponent, {
       data: {
         message,
-        actionMessage: 'GENERAL.CLOSE',
+        actionMessage: 'GENERAL.close',
       },
       panelClass: 'snackbar-error',
     });

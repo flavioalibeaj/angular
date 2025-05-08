@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
     <mat-select [formControlName]="input.fieldName" [multiple]="input.isMultiSelect">
       @if (input.isMultiSelect) {
       <mat-option #allSelected (onSelectionChange)="onSelectAllToggle(input.fieldName, allSelected.selected, options)">
-        {{"GENERAL.SELECT_ALL" | translate}}</mat-option>
+        {{"GENERAL.select_all" | translate}}</mat-option>
       @for (option of options; track option) {
       <mat-option [value]="option.key" [disabled]="input.isReadonly"
         (onSelectionChange)="onSelectionChange(allSelected.selected)">{{option.value}}</mat-option>

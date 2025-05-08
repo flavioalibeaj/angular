@@ -30,13 +30,13 @@ import { IFormResponse } from '../../../../shared/model/i-form-response.interfac
   ],
   template: `
     <mat-card-header class="justify-content-center">
-      <mat-card-title>{{ 'AUTH.LOGIN' | translate }}</mat-card-title>
+      <mat-card-title>{{ 'AUTH.login' | translate }}</mat-card-title>
     </mat-card-header>
     <app-mat-form
       [formModel]="formModel"
       formClass="px-3 mt-4 d-flex flex-column justify-content-center"
       actionsClass="flex-column gap-3"
-      submitButtonText="AUTH.LOGIN"
+      submitButtonText="AUTH.login"
       submitButtonIcon="login"
       submitButtonClass="w-100"
       [contentProjection]="true"
@@ -44,9 +44,9 @@ import { IFormResponse } from '../../../../shared/model/i-form-response.interfac
     >
       <span class="tertiary-color" role="button" routerLink="../register">
         <a>
-          {{ 'AUTH.NO_ACC_REGISTER' | translate }}
+          {{ 'AUTH.no_acc_register' | translate }}
           <b class="text-decoration-underline">{{
-            'AUTH.HERE' | translate
+            'AUTH.here' | translate
           }}</b></a
         >
       </span>
@@ -61,14 +61,14 @@ export class LoginComponent implements OnInit {
     {
       fieldType: FieldType.TEXT,
       fieldName: 'username',
-      label: 'AUTH.USERNAME',
+      label: 'AUTH.username',
       inputClass: 'w-100',
       validators: [Validators.required],
     },
     {
       fieldType: FieldType.PASSWORD,
       fieldName: 'password',
-      label: 'AUTH.PASSWORD',
+      label: 'AUTH.password',
       inputClass: 'w-100',
       validators: [Validators.required, Validators.minLength(8)],
     },

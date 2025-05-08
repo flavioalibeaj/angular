@@ -40,7 +40,7 @@ import { IInformationDialogData } from '../../../../shared/model/i-information-d
         mat-icon-button
         [matMenuTriggerFor]="changeLanguageMenu"
         aria-label="Change language icon-button"
-        [matTooltip]="'TOOLBAR.CHANGE_LANG' | translate"
+        [matTooltip]="'TOOLBAR.change_lang' | translate"
       >
         <mat-icon>translate</mat-icon>
       </button>
@@ -48,7 +48,7 @@ import { IInformationDialogData } from '../../../../shared/model/i-information-d
         [matMenuTriggerFor]="actionsMenu"
         mat-icon-button
         aria-label="Icon-button with three vertical dots icon"
-        [matTooltip]="'TOOLBAR.ACTIONS' | translate"
+        [matTooltip]="'TOOLBAR.actions' | translate"
       >
         <mat-icon>more_vert</mat-icon>
       </button>
@@ -57,15 +57,15 @@ import { IInformationDialogData } from '../../../../shared/model/i-information-d
     <mat-menu #actionsMenu>
       <button mat-menu-item>
         <mat-icon>person</mat-icon>
-        {{ 'TOOLBAR.PROFILE' | translate }}
+        {{ 'TOOLBAR.profile' | translate }}
       </button>
       <button mat-menu-item>
         <mat-icon>settings</mat-icon>
-        {{ 'TOOLBAR.SETTINGS' | translate }}
+        {{ 'TOOLBAR.settings' | translate }}
       </button>
       <button mat-menu-item (click)="logout()">
         <mat-icon>logout</mat-icon>
-        {{ 'TOOLBAR.LOG_OUT' | translate }}
+        {{ 'TOOLBAR.log_out' | translate }}
       </button>
     </mat-menu>
 
@@ -92,12 +92,12 @@ export class ToolbarComponent {
 
   readonly languages = [
     {
-      label: 'LANGUAGES.ALBANIAN',
+      label: 'LANGUAGES.albanian',
       code: 'al',
       img: 'AL',
     },
     {
-      label: 'LANGUAGES.ENGLISH',
+      label: 'LANGUAGES.english',
       code: 'en',
       img: 'GB',
     },
@@ -110,11 +110,11 @@ export class ToolbarComponent {
 
   logout() {
     const dialogData: IInformationDialogData = {
-      cardText: this.translateService.stream('AUTH.LOG_OUT_MESSAGE'),
-      cardTitle: this.translateService.stream('TOOLBAR.LOG_OUT'),
+      cardText: this.translateService.stream('AUTH.log_out_message'),
+      cardTitle: this.translateService.stream('TOOLBAR.log_out'),
       cardTitleIcon: 'logout',
-      cancelButtonText: this.translateService.stream('GENERAL.CLOSE'),
-      saveButtonText: this.translateService.stream('TOOLBAR.LOG_OUT'),
+      cancelButtonText: this.translateService.stream('GENERAL.close'),
+      saveButtonText: this.translateService.stream('TOOLBAR.log_out'),
       saveButtonIcon: 'logout',
     };
 

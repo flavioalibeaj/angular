@@ -99,7 +99,7 @@ export class AuthService {
   register({ confirmPassword, password, username }: IRegisterRequest) {
     if (confirmPassword !== password) {
       this.#translateService
-        .stream('AUTH.CONFIRM_PASSWORD_MATCH')
+        .stream('AUTH.confirm_password_match')
         .pipe(take(1))
         .subscribe({
           next: (msg) => {

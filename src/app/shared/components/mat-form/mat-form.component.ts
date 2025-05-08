@@ -79,8 +79,8 @@ export class MatFormComponent<T> {
   readonly formModel = input.required<IFormModel[]>();
   readonly cancelButtonIcon = input<string>('close');
   readonly submitButtonIcon = input<string>('check');
-  readonly cancelButtonText = input<string>('GENERAL.CLOSE');
-  readonly submitButtonText = input<string>('GENERAL.SAVE');
+  readonly cancelButtonText = input<string>('GENERAL.close');
+  readonly submitButtonText = input<string>('GENERAL.save');
   readonly formClass = input<string>();
   readonly actionsClass = input<string>('w-100 d-flex gap-3');
   readonly submitButtonClass = input<string>();
@@ -168,7 +168,7 @@ export class MatFormComponent<T> {
   onSubmit(): void {
     if (this.formGroup().invalid) {
       this.#translateService
-        .stream('FORM.FILL_VALID_VALUES')
+        .stream('FORM.fill_valid_values')
         .pipe(take(1))
         .subscribe({
           next: (msg) => {

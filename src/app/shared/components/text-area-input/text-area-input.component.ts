@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TranslatePipe } from '@ngx-translate/core';
 import { IFormModel } from '../../model/i-form-model.interface';
@@ -6,7 +6,6 @@ import { AsyncPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { GenericService } from '../../services/generic.service';
 import { MatInputModule } from '@angular/material/input';
 import { ClickStopPropagationDirective } from '../../directives/click-stop-propagation.directive';
 import { HandleFieldErrorPipe } from '../../pipes/handle-field-error.pipe';

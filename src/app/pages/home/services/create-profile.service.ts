@@ -14,28 +14,28 @@ export class CreateProfileService {
   readonly firstNameInput: IFormModel = {
     fieldName: 'firstName',
     fieldType: FieldType.TEXT,
-    label: 'PROFILE.FIRST_NAME',
+    label: 'PROFILE.first_name',
     inputClass: 'w-100',
   };
 
   readonly lastNameInput: IFormModel = {
     fieldName: 'lastName',
     fieldType: FieldType.TEXT,
-    label: 'PROFILE.LAST_NAME',
+    label: 'PROFILE.last_name',
     inputClass: 'w-100',
   };
 
   readonly phoneNumberInput: IFormModel = {
     fieldName: 'phoneNumber',
     fieldType: FieldType.PHONENUMBER,
-    label: 'PROFILE.PHONE_NUMBER',
+    label: 'PROFILE.phone_number',
     inputClass: 'w-100',
   };
 
   readonly textAreaInput: IFormModel = {
     fieldName: 'bio',
     fieldType: FieldType.TEXTAREA,
-    label: 'PROFILE.BIOGRAPHY',
+    label: 'PROFILE.biography',
     inputClass: 'w-100',
   };
 
@@ -59,7 +59,7 @@ export class CreateProfileService {
   createProfile() {
     if (!this.fg.valid) {
       this.#translateService
-        .stream('FORM.FILL_VALID_VALUES')
+        .stream('FORM.fill_valid_values')
         .pipe(take(1))
         .subscribe({
           next: (msg) => {

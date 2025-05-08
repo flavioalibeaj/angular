@@ -51,7 +51,7 @@ import { TranslatePipe } from '@ngx-translate/core';
         <button mat-raised-button (click)="save()">
           <mat-icon>{{ dialogData.saveButtonIcon ?? 'check' }}</mat-icon>
           {{
-            (dialogData.saveButtonText | async) ?? ('GENERAL.SAVE' | translate)
+            (dialogData.saveButtonText | async) ?? ('GENERAL.save' | translate)
           }}
         </button>
         }
@@ -59,7 +59,7 @@ import { TranslatePipe } from '@ngx-translate/core';
           <mat-icon>{{ dialogData.cancelButtonIcon ?? 'close' }}</mat-icon>
           {{
             (dialogData.cancelButtonText | async) ??
-              ('GENERAL.CLOSE' | translate)
+              ('GENERAL.close' | translate)
           }}
         </button>
       </mat-card-actions>

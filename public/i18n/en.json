@@ -1,20 +1,19 @@
 {
   "AUTH": {
-    "LOGIN": "Log in",
-    "REGISTER": "Register",
-    "USERNAME": "Username",
-    "PASSWORD": "Password",
-    "CONFIRM_PASSWORD": "Confirm password",
-    "HIDE_PASSWORD": "Hide password",
-    "CONFIRM_PASSWORD_MATCH": "Passwords must match",
-    "HERE": "here",
-    "NO_ACC_REGISTER": "Don't have an account? Register",
-    "ACC_LOGIN": "Already have an account? Log in",
-    "LOG_OUT_MESSAGE": "Are you sure you want to logout?"
+    "login": "Log in",
+    "register": "Register",
+    "username": "Username",
+    "password": "Password",
+    "confirm_password": "Confirm password",
+    "confirm_password_match": "Passwords must match",
+    "here": "here",
+    "no_acc_register": "Don't have an account? Register",
+    "acc_login": "Already have an account? Log in",
+    "log_out_message": "Are you sure you want to logout?"
   },
   "FORM": {
-    "FILL_VALID_VALUES": "Fill form with valid values",
-    "SUBMIT": "Submit",
+    "fill_valid_values": "Fill form with valid values",
+    "submit": "Submit",
     "chooseFile": "Choose file",
     "ERROR": {
       "required": "Field is required",
@@ -23,34 +22,33 @@
     }
   },
   "TOOLBAR": {
-    "PROFILE": "Profile",
-    "SETTINGS": "Settings",
-    "LOG_OUT": "Log out",
-    "CHANGE_LANG": "Change language",
-    "ACTIONS": "Actions"
+    "profile": "Profile",
+    "settings": "Settings",
+    "log_out": "Log out",
+    "change_lang": "Change language",
+    "actions": "Actions"
   },
   "PROFILE": {
-    "HELLO": "Hello",
-    "CREATE": "Create your profile",
-    "FIRST_NAME": "First name",
-    "LAST_NAME": "Last name",
-    "PHONE_NUMBER": "Phone number",
-    "BIOGRAPHY": "Biography"
+    "create": "Create your profile",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "phone_number": "Phone number",
+    "biography": "Biography"
   },
   "TABLE": {
-    "PRINT": "Print",
-    "NO_DATA": "No data",
-    "TEMPLATE_NOT_FOUND": "Template not found",
-    "FILTER": "Filter"
+    "print": "Print",
+    "no_data": "No data",
+    "template_not_found": "Template not found",
+    "filter": "Filter"
   },
   "LANGUAGES": {
-    "ALBANIAN": "Albanian",
-    "ENGLISH": "English"
+    "albanian": "Albanian",
+    "english": "English"
   },
   "GENERAL": {
-    "CLOSE": "Close",
-    "SAVE": "Save",
-    "SELECT_ALL": "Select all options"
+    "close": "Close",
+    "save": "Save",
+    "select_all": "Select all options"
   },
   "PAGINATOR": {
     "firstPageLabel": "First page",

@@ -17,13 +17,13 @@ import { MatFormComponent } from '../../../../shared/components/mat-form/mat-for
   providers: [RegisterService],
   template: `
     <mat-card-header class="justify-content-center">
-      <mat-card-title>{{ 'AUTH.REGISTER' | translate }}</mat-card-title>
+      <mat-card-title>{{ 'AUTH.register' | translate }}</mat-card-title>
     </mat-card-header>
     <app-mat-form
       [formModel]="registerService.formModel"
       formClass="px-3 mt-4 d-flex flex-column justify-content-center"
       actionsClass="flex-column gap-3"
-      submitButtonText="AUTH.REGISTER"
+      submitButtonText="AUTH.register"
       submitButtonIcon="add"
       submitButtonClass="w-100"
       [contentProjection]="true"
@@ -31,9 +31,9 @@ import { MatFormComponent } from '../../../../shared/components/mat-form/mat-for
     >
       <span class="tertiary-color" role="button" routerLink="../login">
         <a
-          >{{ 'AUTH.ACC_LOGIN' | translate }}
+          >{{ 'AUTH.acc_login' | translate }}
           <b class="text-decoration-underline">{{
-            'AUTH.HERE' | translate
+            'AUTH.here' | translate
           }}</b></a
         >
       </span>

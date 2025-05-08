@@ -1,20 +1,19 @@
 {
   "AUTH": {
-    "LOGIN": "Identifikohu",
-    "REGISTER": "Rregjistrohu",
-    "USERNAME": "Emri i përdoruesit",
-    "PASSWORD": "Fjalëkalimi",
-    "CONFIRM_PASSWORD": "Konfirmo fjalëkalimin",
-    "HIDE_PASSWORD": "Fshih fjalëkalimin",
-    "CONFIRM_PASSWORD_MATCH": "Fjalëkalimet duhet të jenë të njëjtë",
-    "HERE": "këtu",
-    "NO_ACC_REGISTER": "Nuk keni një llogari? Rregjistrohu",
-    "ACC_LOGIN": "Keni një llogari? Identifikohu",
-    "LOG_OUT_MESSAGE": "Jeni të sigurt që dëshironi të dilni?"
+    "login": "Identifikohu",
+    "register": "Rregjistrohu",
+    "username": "Emri i përdoruesit",
+    "password": "Fjalëkalimi",
+    "confirm_password": "Konfirmo fjalëkalimin",
+    "confirm_password_match": "Fjalëkalimet duhet të jenë të njëjtë",
+    "here": "këtu",
+    "no_acc_register": "Nuk keni një llogari? Rregjistrohu",
+    "acc_login": "Keni një llogari? Identifikohu",
+    "log_out_message": "Jeni të sigurt që dëshironi të dilni?"
   },
   "FORM": {
-    "FILL_VALID_VALUES": "Plotësoni formularin me vlera të vlefshme",
-    "SUBMIT": "Dërgo",
+    "fill_valid_values": "Plotësoni formularin me vlera të vlefshme",
+    "submit": "Dërgo",
     "chooseFile": "Zgjidhni dokumentin",
     "ERROR": {
       "required": "Fusha është e kërkuar",
@@ -23,34 +22,33 @@
     }
   },
   "TOOLBAR": {
-    "PROFILE": "Profili",
-    "SETTINGS": "Cilësimet",
-    "LOG_OUT": "Dilni",
-    "CHANGE_LANG": "Ndrysho gjuhën",
-    "ACTIONS": "Veprime"
+    "profile": "Profili",
+    "settings": "Cilësimet",
+    "log_out": "Dilni",
+    "change_lang": "Ndrysho gjuhën",
+    "actions": "Veprime"
   },
   "PROFILE": {
-    "HELLO": "Përshëndetje",
-    "CREATE": "Krijoni profilin tuaj",
-    "FIRST_NAME": "Emri",
-    "LAST_NAME": "Mbiemri",
-    "PHONE_NUMBER": "Numri i telefonit",
-    "BIOGRAPHY": "Biografia"
+    "create": "Krijoni profilin tuaj",
+    "first_name": "Emri",
+    "last_name": "Mbiemri",
+    "phone_number": "Numri i telefonit",
+    "biography": "Biografia"
   },
   "TABLE": {
-    "PRINT": "Printo",
-    "NO_DATA": "Nuk ka të dhëna",
-    "TEMPLATE_NOT_FOUND": "Modeli nuk u gjet",
-    "FILTER": "Filtro"
+    "print": "Printo",
+    "no_data": "Nuk ka të dhëna",
+    "template_not_found": "Modeli nuk u gjet",
+    "filter": "Filtro"
   },
   "LANGUAGES": {
-    "ALBANIAN": "Shqip",
-    "ENGLISH": "Anglisht"
+    "albanian": "Shqip",
+    "english": "Anglisht"
   },
   "GENERAL": {
-    "CLOSE": "Mbyll",
-    "SAVE": "Ruaj",
-    "SELECT_ALL": "Selekto të gjitha opsionet"
+    "close": "Mbyll",
+    "save": "Ruaj",
+    "select_all": "Selekto të gjitha opsionet"
   },
   "PAGINATOR": {
     "firstPageLabel": "Faqja e parë",

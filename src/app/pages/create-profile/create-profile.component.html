@@ -3,7 +3,7 @@
   <mat-card appearance="outlined">
     <mat-card-header>
       <mat-card-title> {{user.username}} </mat-card-title>
-      <mat-card-subtitle> {{"PROFILE.CREATE" | translate}} </mat-card-subtitle>
+      <mat-card-subtitle> {{"PROFILE.create" | translate}} </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <form [formGroup]="createProfileService.fg">
@@ -38,7 +38,7 @@
       <button mat-raised-button [disabled]="!createProfileService.fg.valid"
         (click)="createProfileService.createProfile()">
         <mat-icon>check</mat-icon>
-        {{"FORM.SUBMIT" | translate}}
+        {{"FORM.submit" | translate}}
       </button>
     </mat-card-actions>
   </mat-card>
