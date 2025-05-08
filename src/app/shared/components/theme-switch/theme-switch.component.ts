@@ -27,7 +27,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
       <mat-icon>format_color_fill</mat-icon>
     </button>
 
-    <mat-menu #menu="matMenu">
+    <mat-menu #menu="matMenu" xPosition="before">
       <button mat-menu-item [matMenuTriggerFor]="themesMenu">Theme</button>
       <button mat-menu-item>
         <mat-slide-toggle

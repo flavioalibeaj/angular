@@ -38,23 +38,25 @@ import { ThemeSwitchComponent } from '../../../../shared/components/theme-switch
       </button>
       <span>My App</span>
       <span class="spacer"></span>
-      <theme-switch />
-      <button
-        mat-icon-button
-        [matMenuTriggerFor]="changeLanguageMenu"
-        aria-label="Change language icon-button"
-        [matTooltip]="'TOOLBAR.change_lang' | translate"
-      >
-        <mat-icon>translate</mat-icon>
-      </button>
-      <button
-        [matMenuTriggerFor]="actionsMenu"
-        mat-icon-button
-        aria-label="Icon-button with three vertical dots icon"
-        [matTooltip]="'TOOLBAR.actions' | translate"
-      >
-        <mat-icon>more_vert</mat-icon>
-      </button>
+      <div class="d-flex flex-row align-items-center gap-3 me-2">
+        <theme-switch />
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="changeLanguageMenu"
+          aria-label="Change language icon-button"
+          [matTooltip]="'TOOLBAR.change_lang' | translate"
+        >
+          <mat-icon>translate</mat-icon>
+        </button>
+        <button
+          [matMenuTriggerFor]="actionsMenu"
+          mat-icon-button
+          aria-label="Icon-button with three vertical dots icon"
+          [matTooltip]="'TOOLBAR.actions' | translate"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </div>
     </mat-toolbar>
 
     <mat-menu #actionsMenu>

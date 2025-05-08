@@ -46,7 +46,7 @@ export class AuthService {
         localStorage.setItem('access_token', token);
 
         const parsedToken = this.#parseToken();
-        permissions = !parsedToken?.permissions ? [] : parsedToken.permissions;
+        permissions = parsedToken?.permissions ?? [];
       } else {
         localStorage.removeItem('access_token');
       }
