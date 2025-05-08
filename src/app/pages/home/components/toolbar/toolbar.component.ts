@@ -13,6 +13,7 @@ import { AuthService } from '../../../../core/services/auth.service';
 import { InformationDialogComponent } from '../../../../shared/components/information-dialog/information-dialog.component';
 import { IFormResponse } from '../../../../shared/model/i-form-response.interface';
 import { IInformationDialogData } from '../../../../shared/model/i-information-dialog-data';
+import { ThemeSwitchComponent } from '../../../../shared/components/theme-switch/theme-switch.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -24,6 +25,7 @@ import { IInformationDialogData } from '../../../../shared/model/i-information-d
     TranslatePipe,
     MatTooltipModule,
     LowerCasePipe,
+    ThemeSwitchComponent,
   ],
   template: `
     <mat-toolbar>
@@ -36,6 +38,7 @@ import { IInformationDialogData } from '../../../../shared/model/i-information-d
       </button>
       <span>My App</span>
       <span class="spacer"></span>
+      <theme-switch />
       <button
         mat-icon-button
         [matMenuTriggerFor]="changeLanguageMenu"
