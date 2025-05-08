@@ -1,8 +1,7 @@
 import { ErrorHandler, inject, Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { take } from 'rxjs';
+import { SnackBarComponent } from '../../shared/components/snack-bar/snack-bar.component';
 
 @Injectable({
   providedIn: 'root',
@@ -10,23 +9,20 @@ import { take } from 'rxjs';
 export class GlobalErrorHandlerService implements ErrorHandler {
   readonly #snackbar = inject(MatSnackBar);
   readonly #router = inject(Router);
-  readonly #translate = inject(TranslateService);
 
   handleError(error: Error): void {
     const message = error.message || 'Unknown error';
-    console.log({
-      message: message,
-      route: this.#router.url,
-      time: new Date().toISOString(),
-    });
+    const route = this.#router.url;
+    const time = new Date().toISOString();
 
-    this.#translate
-      .stream('GENERAL.CLOSE')
-      .pipe(take(1))
-      .subscribe((close) => {
-        this.#snackbar.open(message, close, {
-          panelClass: 'snackbar-error',
-        });
-      });
+    console.log({ message, route, time });
+
+    this.#snackbar.openFromComponent(SnackBarComponent, {
+      data: {
+        message,
+        actionMessage: 'GENERAL.CLOSE',
+      },
+      panelClass: 'snackbar-error',
+    });
   }
 }
