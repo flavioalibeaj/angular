@@ -9,7 +9,6 @@ body {
 html {
   @include mat.all-component-themes(theme.$light-theme);
   @include mat.system-level-colors(theme.$light-theme);
-  // @include mat.theme(theme.$light-theme);
 }
 
 body.dark {
