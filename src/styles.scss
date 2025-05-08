@@ -1,5 +1,5 @@
 @use "@angular/material" as mat;
-@use "../theme-colors" as theme;
+@use "./themes.scss" as themes;
 
 html,
 body {
@@ -7,18 +7,18 @@ body {
 }
 
 html {
-  @include mat.all-component-themes(theme.$light-theme);
-  @include mat.system-level-colors(theme.$light-theme);
-}
-
-body.dark {
-  @include mat.all-component-colors(theme.$dark-theme);
-  @include mat.system-level-colors(theme.$dark-theme);
+  @include mat.all-component-themes(themes.$light-theme);
+  @include mat.system-level-colors(themes.$light-theme);
 }
 
 body {
   background: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
+
+  &.dark {
+    @include mat.all-component-colors(themes.$dark-theme);
+    @include mat.system-level-colors(themes.$dark-theme);
+  }
 }
 
 * {
