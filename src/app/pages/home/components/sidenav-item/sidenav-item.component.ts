@@ -1,11 +1,11 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { IMenuElement } from '../../model/i-menu-element.interface';
 import { TranslatePipe } from '@ngx-translate/core';
 import { BuildRoutePipe } from '../../../../shared/pipes/build-route.pipe';
-import { ToggleSidenavDirective } from '../../../../shared/directives/toggle-sidenav.directive';
 import { MatIconModule } from '@angular/material/icon';
+import { SidenavService } from '../../services/sidenav.service';
 
 @Component({
   selector: 'app-sidenav-item',
@@ -15,7 +15,6 @@ import { MatIconModule } from '@angular/material/icon';
     RouterLinkActive,
     TranslatePipe,
     BuildRoutePipe,
-    ToggleSidenavDirective,
     MatIconModule,
   ],
   styles: [
@@ -40,7 +39,7 @@ import { MatIconModule } from '@angular/material/icon';
       ariaCurrentWhenActive="page"
       [activated]="rla.isActive"
       [routerLink]="menuElement() | buildRoute : parentRoute()"
-      toggleSidenav
+      (click)="openSubMenu()"
     >
       <mat-icon class="m-3" matListItemIcon>{{ menuElement().icon }}</mat-icon>
       <a
@@ -58,14 +57,15 @@ import { MatIconModule } from '@angular/material/icon';
   `,
 })
 export class SidenavItemComponent {
+  readonly #sidenavService = inject(SidenavService);
+
   readonly menuElement = input.required<IMenuElement>();
   readonly parentRoute = input.required<string>();
   readonly subMenuOpenened = output<IMenuElement>();
 
-  // TODO: Implement submenus
-  // openSubMenu() {
-  //   if (!this.menuElement().children?.length) return;
-
-  //   this.subMenuOpenened.emit(this.menuElement());
-  // }
+  openSubMenu() {
+    !this.menuElement().children?.length
+      ? this.#sidenavService.toggleSidenav()
+      : this.subMenuOpenened.emit(this.menuElement());
+  }
 }
