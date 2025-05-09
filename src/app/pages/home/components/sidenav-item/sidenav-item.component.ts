@@ -4,6 +4,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { IMenuElement } from '../../model/i-menu-element.interface';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslatePipe } from '@ngx-translate/core';
+import { BuildRoutePipe } from '../../../../shared/pipes/build-route.pipe';
 
 @Component({
   selector: 'app-sidenav-item',
@@ -14,11 +15,12 @@ import { TranslatePipe } from '@ngx-translate/core';
     RouterLinkActive,
     MatIconModule,
     TranslatePipe,
+    BuildRoutePipe,
   ],
   template: `
     <mat-list-item
       [activated]="rla.isActive"
-      [routerLink]="buildRoute()"
+      [routerLink]="menuElement() | buildRoute : parentRoute()"
       (click)="openSubMenu()"
     >
       <mat-icon>{{ menuElement().icon }}</mat-icon>
@@ -42,11 +44,5 @@ export class SidenavItemComponent {
     if (!this.menuElement().children?.length) return;
 
     this.subMenuOpenened.emit(this.menuElement());
-  }
-
-  buildRoute(): string | undefined {
-    if (this.menuElement().children?.length) return;
-
-    return `${this.parentRoute()}/${this.menuElement().url}`;
   }
 }
