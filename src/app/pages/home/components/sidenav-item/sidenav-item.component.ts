@@ -21,7 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
   styles: [
     `
       ::ng-deep .mat-mdc-nav-list .mat-mdc-list-item {
-        height: 3rem;
+        height: 100%;
         border-radius: unset;
       }
 
@@ -42,7 +42,7 @@ import { MatIconModule } from '@angular/material/icon';
       [routerLink]="menuElement() | buildRoute : parentRoute()"
       toggleSidenav
     >
-      <mat-icon matListItemIcon>{{ menuElement().icon }}</mat-icon>
+      <mat-icon class="m-3" matListItemIcon>{{ menuElement().icon }}</mat-icon>
       <a
         matListItemTitle
         routerLinkActive
