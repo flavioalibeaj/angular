@@ -31,6 +31,29 @@
   @case (FieldType.TIMEPICKER) { <time-picker-input /> }
   @case (FieldType.PHONENUMBER) { <phone-number-input [input]="input" [control]="control" /> }
   }
+  <!-- @case (FieldType.MEDIA) {
+    <ng-template #media let-input="input">
+      <div class="d-flex flex-column justify-content-center gap-2 align-items-center margin-top__1 margin-bottom__1">
+        <label [for]="input.name">{{ input.label | async }}</label>
+        <img class="photo" *ngIf="myForm.controls[input.name].value" height="100" width="100"
+          [src]="'data:image/*;base64,' + myForm.controls[input.name].value" alt="Upload" (click)="file.click()">
+        <img src="assets/img/image-placeholder.png" class="placeholder" *ngIf="!myForm.controls[input.name].value"
+          alt="Placeholder" (click)="file.click()" height="100" width="100">
+        <div class="d-flex flex-row gap-1">
+          <button mat-stroked-button color="warn" (click)="emptyFile(input.name); file.value = ''"
+            *ngIf="myForm.controls[input.name].value">
+            {{ 'GENERAL.delete' | translate }}
+          </button>
+        </div>
+        <mat-hint *ngIf="myForm.controls[input.name].valid">{{ 'FORM.HINTS.largeSizeHint' | translate }}</mat-hint>
+        <mat-error>{{
+          myForm.controls[input.name] | handleError | async
+          }}</mat-error>
+        <input type="file" #file [name]="input.name" accept="image/*" style="display: none;"
+          (change)="onFileChange($event, input.name)" />
+      </div>
+    </ng-template>
+  } -->
   }
 
   <ng-template #password let-input="input" let-control="control">
