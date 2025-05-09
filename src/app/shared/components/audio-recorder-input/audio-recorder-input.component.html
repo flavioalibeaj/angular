@@ -1,0 +1,18 @@
+<div>
+  <h1>Audio Recorder</h1>
+  @if (isRecording) {
+  <button (click)="stopRecording()">
+    Stop Recording
+  </button>
+  } @else {
+  <button (click)="startRecording()">
+    Start Recording
+  </button>
+  }
+
+  @if (audioUrl) {
+  <audio [src]="audioUrl" controls></audio>
+  }
+</div>
+
+<!-- TODO -->
