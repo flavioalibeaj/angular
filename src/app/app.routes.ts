@@ -6,7 +6,6 @@ import { authRoutes } from './pages/auth/auth.routes';
 export const routes: Routes = [
   {
     path: 'auth',
-    data: { openWhenAuthenticated: false },
     canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/auth/pages/auth.component').then((c) => c.AuthComponent),
@@ -29,7 +28,6 @@ export const routes: Routes = [
     canActivate: [authGuard, createProfileGuard],
     data: {
       openWhenAuthenticated: true,
-      openWithProfileId: false,
     },
     loadComponent: () =>
       import('./pages/create-profile/create-profile.component').then(

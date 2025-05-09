@@ -7,7 +7,7 @@ export const authGuard: CanActivateFn = (route): boolean => {
   const router = inject(Router);
 
   const routeData = route.data as RouteData | undefined;
-  const openWhenAuthenticated = routeData?.openWhenAuthenticated ?? false;
+  const openWhenAuthenticated = !!routeData?.openWhenAuthenticated;
   const isLoggedIn = authService.isLoggedIn();
 
   if (!openWhenAuthenticated) {
@@ -24,5 +24,5 @@ export const authGuard: CanActivateFn = (route): boolean => {
 };
 
 interface RouteData {
-  openWhenAuthenticated: boolean;
+  openWhenAuthenticated?: boolean;
 }
