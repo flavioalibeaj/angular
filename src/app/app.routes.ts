@@ -18,7 +18,7 @@ export const routes: Routes = [
       openWhenAuthenticated: true,
       openWithProfileId: true,
     },
-    canActivate: [authGuard, createProfileGuard],
+    // canActivate: [authGuard, createProfileGuard],
     loadComponent: () =>
       import('./pages/home/home.component').then((c) => c.HomeComponent),
     children: homeRoutes,
