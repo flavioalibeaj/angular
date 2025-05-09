@@ -32,6 +32,7 @@ import { ThemeSwitchComponent } from '../../../../shared/components/theme-switch
       <button
         mat-icon-button
         aria-label="Icon-button with menu icon"
+        onclick="this.blur()"
         (click)="sidenavService.toggleSidenav()"
       >
         <mat-icon>menu</mat-icon>
