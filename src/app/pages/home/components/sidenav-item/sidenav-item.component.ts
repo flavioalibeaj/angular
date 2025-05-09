@@ -1,37 +1,43 @@
 import { Component, input, output } from '@angular/core';
-import { MatListItem, MatListModule } from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { IMenuElement } from '../../model/i-menu-element.interface';
-import { MatIconModule } from '@angular/material/icon';
 import { TranslatePipe } from '@ngx-translate/core';
 import { BuildRoutePipe } from '../../../../shared/pipes/build-route.pipe';
+import { ToggleSidenavDirective } from '../../../../shared/directives/toggle-sidenav.directive';
 
 @Component({
   selector: 'app-sidenav-item',
   imports: [
-    MatListItem,
     MatListModule,
     RouterLink,
     RouterLinkActive,
-    MatIconModule,
     TranslatePipe,
     BuildRoutePipe,
+    ToggleSidenavDirective,
+  ],
+  styles: [
+    `
+      ::ng-deep .mat-mdc-nav-list .mat-mdc-list-item {
+        border-radius: unset;
+      }
+    `,
   ],
   template: `
     <mat-list-item
+      ariaCurrentWhenActive="page"
       [activated]="rla.isActive"
       [routerLink]="menuElement() | buildRoute : parentRoute()"
-      (click)="openSubMenu()"
+      toggleSidenav
     >
-      <mat-icon>{{ menuElement().icon }}</mat-icon>
-      <!-- <a routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"> -->
-      <!-- TODO fix active link styles -->
-      <a routerLinkActive #rla="routerLinkActive">
-        {{ menuElement().name | translate }}
-      </a>
-      @if (menuElement().children?.length) {
-      <mat-icon class="ms-auto me-3">chevron_right</mat-icon>
-      }
+      <a
+        matListItemTitle
+        routerLinkActive
+        #rla="routerLinkActive"
+        class="text-decoration-none"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >{{ menuElement().name | translate }}</a
+      >
     </mat-list-item>
   `,
 })
@@ -40,9 +46,10 @@ export class SidenavItemComponent {
   readonly parentRoute = input.required<string>();
   readonly subMenuOpenened = output<IMenuElement>();
 
-  openSubMenu() {
-    if (!this.menuElement().children?.length) return;
+  // TODO: Implement submenus
+  // openSubMenu() {
+  //   if (!this.menuElement().children?.length) return;
 
-    this.subMenuOpenened.emit(this.menuElement());
-  }
+  //   this.subMenuOpenened.emit(this.menuElement());
+  // }
 }
