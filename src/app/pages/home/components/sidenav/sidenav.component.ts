@@ -35,8 +35,12 @@ import { TranslatePipe } from '@ngx-translate/core';
     <mat-sidenav-container class="w-auto h-100">
       <mat-sidenav mode="over" autoFocus="false">
         @let oli = openedListItem(); @if (oli) {
-        <div class="d-flex gap-3 align-items-center">
-          <button mat-icon-button (click)="openedListItem.set(undefined)">
+        <div class="d-flex gap-3 align-items-center py-2">
+          <button
+            mat-icon-button
+            class="d-flex"
+            (click)="openedListItem.set(undefined)"
+          >
             <mat-icon>chevron_left</mat-icon>
           </button>
           <p class="fw-bolder m-0">
