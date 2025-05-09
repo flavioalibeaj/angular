@@ -51,8 +51,7 @@ import { TranslatePipe } from '@ngx-translate/core';
         }
 
         <mat-nav-list>
-          @for (menuElement of menuItems(); track menuElement; let last = $last)
-          {
+          @for (menuElement of menuItems(); track menuElement) {
           <app-sidenav-item
             [menuElement]="menuElement"
             [parentRoute]="parentRoute()"
@@ -72,6 +71,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     `
       mat-sidenav {
         width: 16rem;
+        border-top-right-radius: 0;
 
         mat-nav-list {
           padding: 0;
