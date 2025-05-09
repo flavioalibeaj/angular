@@ -13,7 +13,7 @@ import { Subject, takeUntil, tap } from 'rxjs';
 import { Router, RouterOutlet } from '@angular/router';
 import { MatNavList } from '@angular/material/list';
 import { SidenavItemComponent } from '../sidenav-item/sidenav-item.component';
-import { MatDivider, MatDividerModule } from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 import { IMenuElement } from '../../model/i-menu-element.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,7 +26,6 @@ import { TranslatePipe } from '@ngx-translate/core';
     RouterOutlet,
     MatNavList,
     SidenavItemComponent,
-    MatDivider,
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
@@ -55,9 +54,7 @@ import { TranslatePipe } from '@ngx-translate/core';
             [parentRoute]="parentRoute()"
             (subMenuOpenened)="subMenuOpenened($event)"
           />
-          @if(!last){
-          <mat-divider />
-          } }
+          }
         </mat-nav-list>
       </mat-sidenav>
 
