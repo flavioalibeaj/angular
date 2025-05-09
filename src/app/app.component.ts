@@ -6,7 +6,7 @@ import {
   Router,
   RouterOutlet,
 } from '@angular/router';
-import { EMPTY, filter, switchMap, tap, timer } from 'rxjs';
+import { delay, filter, tap } from 'rxjs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
     );
 
   ngOnInit(): void {
-    this.#listenToRouteEvents();
+    // this.#listenToRouteEvents();
     this.#setUpAppLanguage();
   }
 
@@ -75,11 +75,9 @@ export class AppComponent implements OnInit {
             throw new Error(event.error);
           }
         }),
-        switchMap((event) => {
-          return event instanceof NavigationEnd
-            ? timer(600).pipe(tap(() => this.#spinnerService.hide()))
-            : EMPTY;
-        })
+        filter((e) => e instanceof NavigationEnd),
+        delay(300),
+        tap(() => this.#spinnerService.hide())
       )
       .subscribe();
   }

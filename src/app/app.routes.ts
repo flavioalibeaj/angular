@@ -2,11 +2,11 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { createProfileGuard } from './pages/home/guards/create-profile.guard';
 import { authRoutes } from './pages/auth/auth.routes';
+import { homeRoutes } from './pages/home/home.routes';
 
 export const routes: Routes = [
   {
     path: 'auth',
-    data: { openWhenAuthenticated: false },
     canActivate: [authGuard],
     loadComponent: () =>
       import('./pages/auth/pages/auth.component').then((c) => c.AuthComponent),
@@ -18,18 +18,16 @@ export const routes: Routes = [
       openWhenAuthenticated: true,
       openWithProfileId: true,
     },
-    canActivate: [authGuard, createProfileGuard],
+    // canActivate: [authGuard, createProfileGuard],
     loadComponent: () =>
       import('./pages/home/home.component').then((c) => c.HomeComponent),
-    loadChildren: () =>
-      import('./pages/home/home.routes').then((r) => r.homeRoutes),
+    children: homeRoutes,
   },
   {
     path: 'create-profile',
     canActivate: [authGuard, createProfileGuard],
     data: {
       openWhenAuthenticated: true,
-      openWithProfileId: false,
     },
     loadComponent: () =>
       import('./pages/create-profile/create-profile.component').then(

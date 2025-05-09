@@ -13,7 +13,7 @@ import { Subject, takeUntil, tap } from 'rxjs';
 import { Router, RouterOutlet } from '@angular/router';
 import { MatNavList } from '@angular/material/list';
 import { SidenavItemComponent } from '../sidenav-item/sidenav-item.component';
-import { MatDivider, MatDividerModule } from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 import { IMenuElement } from '../../model/i-menu-element.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,7 +26,6 @@ import { TranslatePipe } from '@ngx-translate/core';
     RouterOutlet,
     MatNavList,
     SidenavItemComponent,
-    MatDivider,
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
@@ -36,8 +35,12 @@ import { TranslatePipe } from '@ngx-translate/core';
     <mat-sidenav-container class="w-auto h-100">
       <mat-sidenav mode="over" autoFocus="false">
         @let oli = openedListItem(); @if (oli) {
-        <div class="d-flex gap-3 align-items-center">
-          <button mat-icon-button (click)="openedListItem.set(undefined)">
+        <div class="d-flex gap-3 align-items-center py-2">
+          <button
+            mat-icon-button
+            class="d-flex"
+            (click)="openedListItem.set(undefined)"
+          >
             <mat-icon>chevron_left</mat-icon>
           </button>
           <p class="fw-bolder m-0">
@@ -48,20 +51,18 @@ import { TranslatePipe } from '@ngx-translate/core';
         }
 
         <mat-nav-list>
-          @for (menuElement of menuItems(); track menuElement; let last = $last)
-          {
+          @for (menuElement of menuItems(); track menuElement) {
           <app-sidenav-item
             [menuElement]="menuElement"
             [parentRoute]="parentRoute()"
             (subMenuOpenened)="subMenuOpenened($event)"
           />
-          @if(!last){
-          <mat-divider />
-          } }
+          }
         </mat-nav-list>
       </mat-sidenav>
 
       <mat-sidenav-content>
+        <!-- TODO ka bug, ne momentin qe duhet te besh scroll per te par me posht nuk shfaqen te gjitha elementet. Provoje me lorem ipsum ne html dhe bej scroll -->
         <router-outlet />
       </mat-sidenav-content>
     </mat-sidenav-container>
@@ -70,6 +71,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     `
       mat-sidenav {
         width: 16rem;
+        border-top-right-radius: 0;
 
         mat-nav-list {
           padding: 0;

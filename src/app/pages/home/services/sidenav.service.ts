@@ -14,6 +14,18 @@ export class SidenavService {
 
   readonly menuElements: readonly IMenuElement[] = [
     { name: 'PAGES.dashboard', url: '', icon: 'dashboard' },
+    {
+      name: 'parent',
+      url: 'parent',
+      icon: 'folder',
+      children: [
+        {
+          name: 'child1',
+          url: 'child1',
+          icon: 'account_tree',
+        },
+      ],
+    },
     { name: 'PAGES.settings', url: 'settings', icon: 'settings' },
   ];
 

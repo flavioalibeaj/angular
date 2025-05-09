@@ -107,3 +107,7 @@ export const appConfig: ApplicationConfig = {
     },
   ],
 };
+
+// TODO menu konfigurime ku mund te ndryshosh layoutin e aplikacionit
+// psh dark mode, light mode, colors
+// ose sidenavin ta lesh te hapur ose jo, nen menut te jen si te pms apo si tek parking
