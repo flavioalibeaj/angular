@@ -59,6 +59,7 @@ import { TranslatePipe } from '@ngx-translate/core';
       </mat-sidenav>
 
       <mat-sidenav-content>
+        <!-- TODO ka bug, ne momentin qe duhet te besh scroll per te par me posht nuk shfaqen te gjitha elementet. Provoje me lorem ipsum ne html dhe bej scroll -->
         <router-outlet />
       </mat-sidenav-content>
     </mat-sidenav-container>
