@@ -36,7 +36,11 @@ import { TranslatePipe } from '@ngx-translate/core';
           </mat-card-title>
         </div>
         <span class="spacer"></span>
-        <button mat-icon-button mat-dialog-close class="dialog-close-button">
+        <button
+          mat-icon-button
+          mat-dialog-close
+          class="dialog-close-button d-flex"
+        >
           <mat-icon> close </mat-icon>
         </button>
       </mat-card-header>
@@ -48,7 +52,7 @@ import { TranslatePipe } from '@ngx-translate/core';
       <mat-divider class="mt-3" />
       <mat-card-actions align="end" class="d-flex gap-2">
         @if (!dialogData.hideSaveButton) {
-        <button mat-raised-button (click)="save()">
+        <button mat-flat-button (click)="save()">
           <mat-icon>{{ dialogData.saveButtonIcon ?? 'check' }}</mat-icon>
           {{
             (dialogData.saveButtonText | async) ?? ('GENERAL.save' | translate)
