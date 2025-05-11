@@ -1,0 +1,30 @@
+<mat-toolbar>
+  <button mat-icon-button aria-label="Icon-button with menu icon" onclick="this.blur()" toggleSidenav>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My App</span>
+  <span class="spacer"></span>
+  <div class="d-flex flex-row align-items-center gap-3 me-2">
+    <theme-switch />
+    <change-lang />
+    <button [matMenuTriggerFor]="actionsMenu" mat-icon-button aria-label="Icon-button with three vertical dots icon"
+      [matTooltip]="'TOOLBAR.actions' | translate">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<mat-menu #actionsMenu>
+  <button mat-menu-item>
+    <mat-icon>person</mat-icon>
+    {{ 'TOOLBAR.profile' | translate }}
+  </button>
+  <button mat-menu-item>
+    <mat-icon>settings</mat-icon>
+    {{ 'TOOLBAR.settings' | translate }}
+  </button>
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    {{ 'TOOLBAR.log_out' | translate }}
+  </button>
+</mat-menu>

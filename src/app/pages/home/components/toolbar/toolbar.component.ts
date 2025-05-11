@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { LowerCasePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { filter, tap } from 'rxjs';
 import { AuthService } from '../../../../core/services/auth.service';
@@ -14,6 +13,7 @@ import { IFormResponse } from '../../../../shared/model/i-form-response.interfac
 import { IInformationDialogData } from '../../../../shared/model/i-information-dialog-data';
 import { ThemeSwitchComponent } from '../../../../shared/components/theme-switch/theme-switch.component';
 import { ToggleSidenavDirective } from '../../../../shared/directives/toggle-sidenav.directive';
+import { ChangeLangComponent } from '../../../../shared/components/change-lang/change-lang.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -24,95 +24,17 @@ import { ToggleSidenavDirective } from '../../../../shared/directives/toggle-sid
     MatMenuModule,
     TranslatePipe,
     MatTooltipModule,
-    LowerCasePipe,
     ThemeSwitchComponent,
     ToggleSidenavDirective,
+    ChangeLangComponent,
   ],
-  template: `
-    <mat-toolbar>
-      <button
-        mat-icon-button
-        aria-label="Icon-button with menu icon"
-        onclick="this.blur()"
-        toggleSidenav
-      >
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>My App</span>
-      <span class="spacer"></span>
-      <div class="d-flex flex-row align-items-center gap-3 me-2">
-        <theme-switch />
-        <button
-          mat-icon-button
-          [matMenuTriggerFor]="changeLanguageMenu"
-          aria-label="Change language icon-button"
-          [matTooltip]="'TOOLBAR.change_lang' | translate"
-        >
-          <mat-icon>translate</mat-icon>
-        </button>
-        <button
-          [matMenuTriggerFor]="actionsMenu"
-          mat-icon-button
-          aria-label="Icon-button with three vertical dots icon"
-          [matTooltip]="'TOOLBAR.actions' | translate"
-        >
-          <mat-icon>more_vert</mat-icon>
-        </button>
-      </div>
-    </mat-toolbar>
-
-    <mat-menu #actionsMenu>
-      <button mat-menu-item>
-        <mat-icon>person</mat-icon>
-        {{ 'TOOLBAR.profile' | translate }}
-      </button>
-      <button mat-menu-item>
-        <mat-icon>settings</mat-icon>
-        {{ 'TOOLBAR.settings' | translate }}
-      </button>
-      <button mat-menu-item (click)="logout()">
-        <mat-icon>logout</mat-icon>
-        {{ 'TOOLBAR.log_out' | translate }}
-      </button>
-    </mat-menu>
-
-    <mat-menu #changeLanguageMenu xPosition="before">
-      @for (lang of languages; track lang) {
-      <button mat-menu-item class="pe-0" (click)="setLanguage(lang.code)">
-        <div class="d-flex flex-row align-items-center gap-3">
-          <span class="fi fi-{{ lang.img | lowercase }}"></span>
-          {{ lang.label | translate }}
-          @if (translateService.currentLang == lang.code) {
-          <mat-icon>done</mat-icon>
-          }
-        </div>
-      </button>
-      }
-    </mat-menu>
-  `,
+  templateUrl: './toolbar.component.html',
+  styleUrl: './toolbar.component.scss',
 })
 export class ToolbarComponent {
   readonly translateService = inject(TranslateService);
   readonly #authService = inject(AuthService);
   readonly #matDialog = inject(MatDialog);
-
-  readonly languages = [
-    {
-      label: 'LANGUAGES.albanian',
-      code: 'al',
-      img: 'AL',
-    },
-    {
-      label: 'LANGUAGES.english',
-      code: 'en',
-      img: 'GB',
-    },
-  ];
-
-  setLanguage(code: string) {
-    this.translateService.use(code);
-    localStorage.setItem('language', code);
-  }
 
   logout() {
     const dialogData: IInformationDialogData = {
