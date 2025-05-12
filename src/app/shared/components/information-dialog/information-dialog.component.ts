@@ -24,7 +24,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     TranslatePipe,
   ],
   template: `
-    <mat-card appearance="outlined" class="h-100">
+    <mat-card class="h-100">
       <!-- TODO add header background-->
       <mat-card-header>
         <div class="d-flex w-100 pb-3 gap-2">

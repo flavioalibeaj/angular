@@ -32,22 +32,21 @@ body {
   //   }
   // }
 
-  // TODO fix, spunojn disa nga ngyrat, plus ka warning per kto
   @each $name,
     $palette
       in (
-        azure: mat.$azure-palette,
-        red: mat.$red-palette,
-        green: mat.$green-palette,
-        blue: mat.$blue-palette,
-        yellow: mat.$yellow-palette,
-        cyan: mat.$cyan-palette,
-        magenta: mat.$magenta-palette,
-        orange: mat.$orange-palette,
-        chartreuse: mat.$chartreuse-palette,
-        spring_green: mat.$spring-green-palette,
-        violet: mat.$violet-palette,
-        rose: mat.$rose-palette
+        "azure": mat.$azure-palette,
+        "red": mat.$red-palette,
+        "green": mat.$green-palette,
+        "blue": mat.$blue-palette,
+        "yellow": mat.$yellow-palette,
+        "cyan": mat.$cyan-palette,
+        "magenta": mat.$magenta-palette,
+        "orange": mat.$orange-palette,
+        "chartreuse": mat.$chartreuse-palette,
+        "spring_green": mat.$spring-green-palette,
+        "violet": mat.$violet-palette,
+        "rose": mat.$rose-palette
       )
   {
     &.#{$name} {

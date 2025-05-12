@@ -50,7 +50,7 @@
     </button>
     }
     @if (!hideSubmitBtn()) {
-    <button mat-raised-button type="submit" [disabled]="!formGroup().valid" [class]="submitButtonClass()"
+    <button mat-flat-button type="submit" [disabled]="!formGroup().valid" [class]="submitButtonClass()"
       (click)="onSubmit()">
       <mat-icon> {{submitButtonIcon()}} </mat-icon>
       {{submitButtonText() | translate}}

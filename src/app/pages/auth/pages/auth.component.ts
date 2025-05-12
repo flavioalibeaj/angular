@@ -15,7 +15,7 @@ import { RouterOutlet } from '@angular/router';
   ],
   template: `
     <div class="h-100 d-flex justify-content-center align-items-center">
-      <mat-card appearance="outlined">
+      <mat-card>
         <router-outlet />
       </mat-card>
     </div>
