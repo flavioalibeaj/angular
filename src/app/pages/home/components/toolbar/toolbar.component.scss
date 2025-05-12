@@ -1,8 +1,14 @@
 @use "@angular/material" as mat;
 
 :host {
-  @include mat.toolbar-overrides((
-    container-background-color: var(--mat-sys-surface-container-lowest),
-    container-text-color: var(--mat-sys-on-surface),
-  ));
+  @include mat.toolbar-overrides(
+    (
+      container-background-color: var(--mat-sys-primary-container),
+      container-text-color: var(--mat-sys-on-primary-container),
+    )
+  );
+
+  mat-icon {
+    color: var(--mat-sys-on-primary-container);
+  }
 }

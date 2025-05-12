@@ -16,6 +16,15 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
     TranslatePipe,
     LowerCasePipe,
   ],
+  styles: [
+    `
+      @use '@angular/material' as mat;
+
+      mat-icon {
+        color: var(--mat-sys-on-primary-container);
+      }
+    `,
+  ],
   template: `
     <button
       mat-icon-button

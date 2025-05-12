@@ -15,13 +15,21 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatSlideToggleModule,
     ReactiveFormsModule,
   ],
-  styles: `
-  .color-preview{
-    width: 20px;
-    height:20px;
-    border-radius: 50%;
-  }
-  `,
+  styles: [
+    `
+      @use '@angular/material' as mat;
+
+      mat-icon {
+        color: var(--mat-sys-on-primary-container);
+      }
+
+      .color-preview {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+      }
+    `,
+  ],
   template: `
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>format_color_fill</mat-icon>
