@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'change-lang',
@@ -68,6 +69,6 @@ export class ChangeLangComponent {
 
   setLanguage(code: string) {
     this.translateService.use(code);
-    localStorage.setItem('language', code);
+    StorageService.language = code;
   }
 }

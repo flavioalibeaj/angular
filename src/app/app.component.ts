@@ -11,6 +11,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
 import { Title } from '@angular/platform-browser';
+import { StorageService } from './shared/services/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -37,6 +38,7 @@ export class AppComponent implements OnInit {
   readonly #translateService = inject(TranslateService);
   readonly #spinnerService = inject(NgxSpinnerService);
   readonly #titleService = inject(Title);
+  readonly #storage = inject(StorageService);
 
   // Listen on document visibility
   @HostListener('document:visibilitychange')
@@ -82,16 +84,16 @@ export class AppComponent implements OnInit {
       .subscribe();
   }
 
+  // TODO storage service
   #setUpAppLanguage() {
     this.#translateService.addLangs(['en', 'al']);
 
     const lang =
-      localStorage.getItem('language') ??
-      this.#translateService.getBrowserLang();
+      StorageService.language ?? this.#translateService.getBrowserLang();
     const selectedLang = lang?.match(/al|en/) ? lang : 'en';
 
     this.#translateService.setDefaultLang(selectedLang);
-    localStorage.setItem('languge', selectedLang);
+    StorageService.language = selectedLang;
     this.#translateService.use(selectedLang);
   }
 }

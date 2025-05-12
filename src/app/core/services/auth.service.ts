@@ -13,6 +13,7 @@ import { NgxPermissionsService } from 'ngx-permissions';
 import { ILoginResponse } from '../../pages/auth/model/i-login-response.interface';
 import { ILoginRequest } from '../../pages/auth/model/i-login-request.interface';
 import { IRegisterRequest } from '../../pages/auth/model/i-register-request.interface';
+import { StorageService } from '../../shared/services/storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ export class AuthService {
   readonly #ngxPermissions = inject(NgxPermissionsService);
 
   // Reactive signal to hold the access token, initialized with a value from localStorage.
-  readonly #token = signal<string | null>(localStorage.getItem('access_token'));
+  readonly #token = signal<string | null>(StorageService.accessToken);
   // Exposing the token signal as a readonly observable.
   readonly token = this.#token.asReadonly();
 
@@ -43,12 +44,12 @@ export class AuthService {
       let permissions: string[] = [];
 
       if (token) {
-        localStorage.setItem('access_token', token);
+        StorageService.accessToken = token;
 
         const parsedToken = this.#parseToken();
         permissions = parsedToken?.permissions ?? [];
       } else {
-        localStorage.removeItem('access_token');
+        StorageService.removeAccessToken();
       }
 
       this.#ngxPermissions.loadPermissions(permissions);

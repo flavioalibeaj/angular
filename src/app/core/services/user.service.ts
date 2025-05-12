@@ -3,6 +3,7 @@ import { IViewUser } from '../model/i-view-user.interface';
 import { HttpService } from '../../shared/services/http.service';
 import { USER_ENDPOINTS } from '../../shared/endpoints/endpoints';
 import { map, tap } from 'rxjs';
+import { StorageService } from '../../shared/services/storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,11 +11,7 @@ import { map, tap } from 'rxjs';
 export class UserService {
   readonly #httpService = inject(HttpService);
 
-  readonly #user = signal<IViewUser | null>(
-    localStorage.getItem('current_user')
-      ? JSON.parse(localStorage.getItem('current_user')!)
-      : null
-  );
+  readonly #user = signal<IViewUser | null>(StorageService.currentUser);
   readonly user = this.#user.asReadonly();
 
   constructor() {
@@ -22,9 +19,9 @@ export class UserService {
       const currentUser = this.#user();
 
       if (currentUser) {
-        localStorage.setItem('current_user', JSON.stringify(currentUser));
+        StorageService.currentUser = currentUser;
       } else {
-        localStorage.removeItem('current_user');
+        StorageService.removeCurrentUser();
       }
     });
   }

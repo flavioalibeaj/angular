@@ -3,6 +3,7 @@ import { inject } from '@angular/core';
 import { catchError, finalize, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { StorageService } from '../../shared/services/storage.service';
 
 export const httpInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
@@ -11,7 +12,7 @@ export const httpInterceptor: HttpInterceptorFn = (req, next) => {
   spinnerService.show();
 
   const setHeaders: { [key: string]: string } = {
-    'Accept-Language': localStorage.getItem('language') ?? 'en',
+    'Accept-Language': StorageService.language ?? 'en',
     Timezone: JSON.stringify(new Date().getTimezoneOffset() / -60),
   };
 
