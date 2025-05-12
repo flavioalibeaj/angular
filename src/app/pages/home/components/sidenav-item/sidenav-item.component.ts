@@ -6,6 +6,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { BuildRoutePipe } from '../../../../shared/pipes/build-route.pipe';
 import { MatIconModule } from '@angular/material/icon';
 import { SidenavService } from '../../services/sidenav.service';
+import { IsParentUrlActivePipe } from '../../../../shared/pipes/is-parent-url-active.pipe';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-sidenav-item',
@@ -16,6 +18,9 @@ import { SidenavService } from '../../services/sidenav.service';
     TranslatePipe,
     BuildRoutePipe,
     MatIconModule,
+    IsParentUrlActivePipe,
+    JsonPipe,
+    AsyncPipe,
   ],
   styles: [
     `
@@ -35,9 +40,15 @@ import { SidenavService } from '../../services/sidenav.service';
     `,
   ],
   template: `
+    <!-- TODO -->
+    {{ rla.isActive }};; {{ menuElement() | json }};;
+    {{ parentRoute() || 'BOSH' }}
     <mat-list-item
       ariaCurrentWhenActive="page"
-      [activated]="rla.isActive"
+      [activated]="
+        rla.isActive ||
+        !!(menuElement() | isParentUrlActive : parentRoute() | async)
+      "
       [routerLink]="menuElement() | buildRoute : parentRoute()"
       (click)="openSubMenu()"
     >
