@@ -92,3 +92,8 @@ input[type="number"] {
 .tertiary-color {
   color: var(--mat-sys-tertiary);
 }
+
+.display-large {
+  display: var(--mat-sys-display-large);
+  // TODO nuk jan defined, fix it
+}
