@@ -84,7 +84,6 @@ export class AppComponent implements OnInit {
       .subscribe();
   }
 
-  // TODO storage service
   #setUpAppLanguage() {
     this.#translateService.addLangs(['en', 'al']);
 
