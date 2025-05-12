@@ -102,7 +102,7 @@ export const appConfig: ApplicationConfig = {
     {
       provide: MAT_CARD_CONFIG,
       useValue: {
-        appearance: 'outlined',
+        appearance: 'raised',
       },
     },
   ],

@@ -53,6 +53,12 @@ body {
       @include themes.themed-palette($palette);
     }
   }
+
+  @include mat.divider-overrides(
+    (
+      color: var(--mat-sys-outline-variant),
+    )
+  );
 }
 
 .snackbar-error {

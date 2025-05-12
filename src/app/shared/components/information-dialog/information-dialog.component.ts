@@ -23,9 +23,20 @@ import { TranslatePipe } from '@ngx-translate/core';
     MatDialogClose,
     TranslatePipe,
   ],
+  styles: [
+    `
+      mat-card-header {
+        background: var(--mat-sys-primary-container);
+        color: var(--mat-sys-on-primary-container);
+
+        mat-icon {
+          color: var(--mat-sys-on-primary-container);
+        }
+      }
+    `,
+  ],
   template: `
     <mat-card class="h-100">
-      <!-- TODO add header background-->
       <mat-card-header>
         <div class="d-flex w-100 pb-3 gap-2">
           <mat-icon class="h-100 d-flex align-items-center">
