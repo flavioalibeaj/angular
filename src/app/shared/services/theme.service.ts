@@ -12,15 +12,15 @@ export class ThemeService {
 
   readonly themes: readonly ITheme[] = [
     { palette: ColorPalette.RED, color: '#ffb4a8' },
-    { palette: ColorPalette.GREEN, color: '#02e600' },
-    { palette: ColorPalette.BLUE, color: '#bec2ff' },
-    { palette: ColorPalette.YELLOW, color: '#cdcd00' },
+    // { palette: ColorPalette.GREEN, color: '#02e600' },
+    // { palette: ColorPalette.BLUE, color: '#bec2ff' },
+    // { palette: ColorPalette.YELLOW, color: '#cdcd00' },
     { palette: ColorPalette.CYAN, color: '#00dddd' },
     { palette: ColorPalette.MAGENTA, color: '#ffabf3' },
     { palette: ColorPalette.ORANGE, color: '#ffb787' },
     { palette: ColorPalette.AZURE, color: '#abc7ff' },
-    { palette: ColorPalette.CHARTREUSE, color: '#70e000' },
-    { palette: ColorPalette.SPRING_GREEN, color: '#00e472' },
+    // { palette: ColorPalette.CHARTREUSE, color: '#70e000' },
+    // { palette: ColorPalette.SPRING_GREEN, color: '#00e472' },
     { palette: ColorPalette.VIOLET, color: '#d5baff' },
     { palette: ColorPalette.ROSE, color: '#ffb1c5' },
   ];
