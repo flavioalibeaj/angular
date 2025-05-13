@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { PreloadingStrategy, Route } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
@@ -6,11 +7,16 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root',
 })
 export class PreloadingService implements PreloadingStrategy {
+  readonly #platformId = inject(PLATFORM_ID);
+
   preload(route: Route, fn: () => Observable<any>): Observable<any> {
+    console.log('Preloading route:', route.path);
     return this.#hasBadConnection() ? of(null) : fn();
   }
 
   #hasBadConnection(): boolean {
+    if (!isPlatformBrowser(this.#platformId)) return false;
+
     const effectiveType: string =
       (navigator as any).connection?.effectiveType ?? '';
 

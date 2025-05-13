@@ -1,42 +1,45 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { StorageKeys } from '../model/storage-keys.enum';
 import { IViewUser } from '../../core/model/i-view-user.interface';
+import { LOCAL_STORAGE } from '../tokens/local-storage.token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StorageService {
-  static get language(): string | null {
-    return localStorage.getItem(StorageKeys.LANGUAGE);
+  readonly #storage = inject(LOCAL_STORAGE);
+
+  get language(): string | null {
+    return this.#storage.getItem(StorageKeys.LANGUAGE);
   }
 
-  static set language(value: string) {
-    localStorage.setItem(StorageKeys.LANGUAGE, value);
+  set language(value: string) {
+    this.#storage.setItem(StorageKeys.LANGUAGE, value);
   }
 
-  static get currentUser(): IViewUser | null {
-    const user = localStorage.getItem(StorageKeys.CURRENT_USER);
+  get currentUser(): IViewUser | null {
+    const user = this.#storage.getItem(StorageKeys.CURRENT_USER);
 
     return user ? JSON.parse(user) : null;
   }
 
-  static set currentUser(user: IViewUser) {
-    localStorage.setItem(StorageKeys.CURRENT_USER, JSON.stringify(user));
+  set currentUser(user: IViewUser) {
+    this.#storage.setItem(StorageKeys.CURRENT_USER, JSON.stringify(user));
   }
 
-  static removeCurrentUser(): void {
-    localStorage.removeItem(StorageKeys.CURRENT_USER);
+  removeCurrentUser(): void {
+    this.#storage.removeItem(StorageKeys.CURRENT_USER);
   }
 
-  static get accessToken(): string | null {
-    return localStorage.getItem(StorageKeys.ACCESS_TOKEN);
+  get accessToken(): string | null {
+    return this.#storage.getItem(StorageKeys.ACCESS_TOKEN);
   }
 
-  static set accessToken(token: string) {
-    localStorage.setItem(StorageKeys.ACCESS_TOKEN, token);
+  set accessToken(token: string) {
+    this.#storage.setItem(StorageKeys.ACCESS_TOKEN, token);
   }
 
-  static removeAccessToken(): void {
-    localStorage.removeItem(StorageKeys.ACCESS_TOKEN);
+  removeAccessToken(): void {
+    this.#storage.removeItem(StorageKeys.ACCESS_TOKEN);
   }
 }

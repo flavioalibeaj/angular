@@ -88,11 +88,11 @@ export class AppComponent implements OnInit {
     this.#translateService.addLangs(['en', 'al']);
 
     const lang =
-      StorageService.language ?? this.#translateService.getBrowserLang();
+      this.#storage.language ?? this.#translateService.getBrowserLang();
     const selectedLang = lang?.match(/al|en/) ? lang : 'en';
 
     this.#translateService.setDefaultLang(selectedLang);
-    StorageService.language = selectedLang;
+    this.#storage.language = selectedLang;
     this.#translateService.use(selectedLang);
   }
 }

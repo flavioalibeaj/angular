@@ -1,4 +1,11 @@
-import { computed, effect, inject, Injectable, signal } from '@angular/core';
+import {
+  computed,
+  effect,
+  inject,
+  Injectable,
+  PLATFORM_ID,
+  signal,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from '../../shared/services/http.service';
 import { EMPTY, from, Observable, switchMap, take, tap } from 'rxjs';
@@ -14,6 +21,7 @@ import { ILoginResponse } from '../../pages/auth/model/i-login-response.interfac
 import { ILoginRequest } from '../../pages/auth/model/i-login-request.interface';
 import { IRegisterRequest } from '../../pages/auth/model/i-register-request.interface';
 import { StorageService } from '../../shared/services/storage.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -24,9 +32,11 @@ export class AuthService {
   readonly #userService = inject(UserService);
   readonly #translateService = inject(TranslateService);
   readonly #ngxPermissions = inject(NgxPermissionsService);
+  readonly #storage = inject(StorageService);
+  readonly #platformId = inject(PLATFORM_ID);
 
   // Reactive signal to hold the access token, initialized with a value from localStorage.
-  readonly #token = signal<string | null>(StorageService.accessToken);
+  readonly #token = signal<string | null>(this.#storage.accessToken);
   // Exposing the token signal as a readonly observable.
   readonly token = this.#token.asReadonly();
 
@@ -44,12 +54,12 @@ export class AuthService {
       let permissions: string[] = [];
 
       if (token) {
-        StorageService.accessToken = token;
+        this.#storage.accessToken = token;
 
         const parsedToken = this.#parseToken();
         permissions = parsedToken?.permissions ?? [];
       } else {
-        StorageService.removeAccessToken();
+        this.#storage.removeAccessToken();
       }
 
       this.#ngxPermissions.loadPermissions(permissions);
@@ -133,6 +143,8 @@ export class AuthService {
    * @returns An Observable that completes when the username is successfully cached.
    */
   setUsernameInCache(username: string): Observable<void> {
+    if (!isPlatformBrowser(this.#platformId)) return EMPTY;
+
     return from(caches.open('login-username')).pipe(
       switchMap((cache) => cache.put('username', new Response(username)))
     );
@@ -142,7 +154,9 @@ export class AuthService {
    * Retrieves the cached username from the browser's Cache API.
    * @returns An Observable emitting the username if found, or an empty Observable otherwise.
    */
-  getUsernameFromCache() {
+  getUsernameFromCache(): Observable<string> {
+    if (!isPlatformBrowser(this.#platformId)) return EMPTY;
+
     return from(caches.open('login-username')).pipe(
       switchMap((cache) => from(cache.match('username'))),
       switchMap((username) => (username ? username.text() : EMPTY))

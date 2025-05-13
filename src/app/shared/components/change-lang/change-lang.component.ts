@@ -53,6 +53,7 @@ import { StorageService } from '../../services/storage.service';
 })
 export class ChangeLangComponent {
   protected readonly translateService = inject(TranslateService);
+  readonly #storage = inject(StorageService);
 
   protected readonly languages = [
     {
@@ -69,6 +70,6 @@ export class ChangeLangComponent {
 
   setLanguage(code: string) {
     this.translateService.use(code);
-    StorageService.language = code;
+    this.#storage.language = code;
   }
 }

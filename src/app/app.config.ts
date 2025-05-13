@@ -2,6 +2,7 @@ import {
   ApplicationConfig,
   ErrorHandler,
   importProvidersFrom,
+  PLATFORM_ID,
   provideZoneChangeDetection,
 } from '@angular/core';
 import {
@@ -33,6 +34,14 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_CARD_CONFIG } from '@angular/material/card';
 import { PreloadingService } from './shared/services/preloading.service';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import {
+  provideClientHydration,
+  withEventReplay,
+  withHttpTransferCacheOptions,
+  withIncrementalHydration,
+} from '@angular/platform-browser';
+import { isPlatformServer } from '@angular/common';
+import { LOCAL_STORAGE } from './shared/tokens/local-storage.token';
 
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (
   http: HttpClient
@@ -104,6 +113,19 @@ export const appConfig: ApplicationConfig = {
       useValue: {
         appearance: 'raised',
       },
+    },
+    provideClientHydration(
+      withEventReplay(),
+      withIncrementalHydration(),
+      withHttpTransferCacheOptions({ includeRequestsWithAuthHeaders: true })
+    ),
+    {
+      provide: LOCAL_STORAGE,
+      useFactory: (platformId: object) => {
+        if (isPlatformServer(platformId)) return {};
+        return localStorage;
+      },
+      deps: [PLATFORM_ID],
     },
   ],
 };

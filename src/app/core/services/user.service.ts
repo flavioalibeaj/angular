@@ -10,8 +10,9 @@ import { StorageService } from '../../shared/services/storage.service';
 })
 export class UserService {
   readonly #httpService = inject(HttpService);
+  readonly #storage = inject(StorageService);
 
-  readonly #user = signal<IViewUser | null>(StorageService.currentUser);
+  readonly #user = signal<IViewUser | null>(this.#storage.currentUser);
   readonly user = this.#user.asReadonly();
 
   constructor() {
@@ -19,9 +20,9 @@ export class UserService {
       const currentUser = this.#user();
 
       if (currentUser) {
-        StorageService.currentUser = currentUser;
+        this.#storage.currentUser = currentUser;
       } else {
-        StorageService.removeCurrentUser();
+        this.#storage.removeCurrentUser();
       }
     });
   }
