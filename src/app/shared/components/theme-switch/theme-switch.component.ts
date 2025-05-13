@@ -28,6 +28,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
         height: 20px;
         border-radius: 50%;
       }
+
+      .active {
+        background-color: var(--mat-sys-surface-container-highest);
+      }
     `,
   ],
   template: `
@@ -48,7 +52,11 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
     <mat-menu #themesMenu="matMenu">
       @for (theme of themeService.themes; track theme.color) {
-      <button mat-menu-item (click)="themeService.setThemeColor(theme.palette)">
+      <button
+        mat-menu-item
+        [class.active]="theme.palette === themeService.currentPalette()"
+        (click)="themeService.setThemeColor(theme.palette)"
+      >
         <div class="d-flex gap-2 align-items-center">
           <div
             class="color-preview"
