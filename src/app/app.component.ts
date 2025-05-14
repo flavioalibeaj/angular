@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
   readonly #spinnerService = inject(NgxSpinnerService);
   readonly #titleService = inject(Title);
   readonly #storage = inject(StorageService);
-  readonly #theme = inject(ThemeService);
+  readonly #theme = inject(ThemeService); // TODO find a better way to use the logic inside
 
   // Listen on document visibility
   @HostListener('document:visibilitychange')
