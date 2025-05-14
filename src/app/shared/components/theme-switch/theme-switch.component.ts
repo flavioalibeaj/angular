@@ -55,7 +55,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
       <button
         mat-menu-item
         [class.active]="theme.palette === themeService.currentPalette()"
-        (click)="themeService.setThemeColor(theme.palette)"
+        (click)="themeService.setColorPalette(theme.palette)"
       >
         <div class="d-flex gap-2 align-items-center">
           <div

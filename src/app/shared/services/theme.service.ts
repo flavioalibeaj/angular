@@ -4,11 +4,12 @@ import { DOCUMENT } from '@angular/common';
 import { ColorPalette } from '../model/color-palette';
 import { ITheme } from '../model/i-theme.interface';
 import { FormControl } from '@angular/forms';
+import { StorageService } from './storage.service';
 
-// TODO ka problem me percaktimin e theme, nuk vihet ne pun nqs komponenti qe esht hap ne view nuk perdor kete servis
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
   readonly #document = inject(DOCUMENT);
+  readonly #storage = inject(StorageService);
 
   readonly themes: readonly ITheme[] = [
     { palette: ColorPalette.RED, color: '#ffb4a8' },
@@ -25,34 +26,16 @@ export class ThemeService {
     { palette: ColorPalette.ROSE, color: '#ffb1c5' },
   ];
 
-  // readonly #currentTheme = signal<ThemeType>(
-  //   localStorage.getItem('theme')
-  //     ? (localStorage.getItem('theme') as ThemeType)
-  //     : ThemeType.LIGHT
-  // );
-
-  // readonly currentTheme = this.#currentTheme.asReadonly();
-
-  // readonly #themeEffect = effect(() => {
-  //   console.log('efekt');
-  //   const currentTheme = this.#currentTheme();
-  //   localStorage.setItem('theme', currentTheme);
-
-  //   currentTheme === ThemeType.DARK
-  //     ? this.#document.body.classList.add(ThemeType.DARK)
-  //     : this.#document.body.classList.remove(ThemeType.DARK);
-  // });
-
-  // toggleTheme() {
-  //   const currentTheme = this.#currentTheme();
-  //   const newTheme =
-  //     currentTheme === ThemeType.LIGHT ? ThemeType.DARK : ThemeType.LIGHT;
-  //   this.#currentTheme.set(newTheme);
-  // }
-
-  readonly #currentTheme = signal<ThemeType>(ThemeType.LIGHT);
-  readonly #currentPalette = signal<ColorPalette>(ColorPalette.AZURE);
-  readonly darkMode = new FormControl<boolean>(false);
+  readonly darkMode = new FormControl<boolean>(
+    this.#storage.themeType === ThemeType.DARK
+  );
+  readonly #currentTheme = signal<ThemeType>(
+    this.darkMode.value ? ThemeType.DARK : ThemeType.LIGHT
+  );
+  readonly #currentPalette = signal<ColorPalette>(
+    <ColorPalette>this.#storage.colorPalette ?? ColorPalette.AZURE
+  );
+  readonly currentPalette = this.#currentPalette.asReadonly();
 
   constructor() {
     effect(() => {
@@ -60,10 +43,13 @@ export class ThemeService {
         ThemeType.DARK,
         this.#currentTheme() === ThemeType.DARK
       );
+      this.#storage.themeType = this.#currentTheme();
+
       this.#document.body.classList.remove(
         ...this.themes.map((t) => `${t.palette}`)
       );
       this.#document.body.classList.add(`${this.#currentPalette()}`);
+      this.#storage.colorPalette = this.#currentPalette();
     });
   }
 
@@ -71,7 +57,7 @@ export class ThemeService {
     this.#currentTheme.set(isChecked ? ThemeType.DARK : ThemeType.LIGHT);
   }
 
-  setThemeColor(palette: ColorPalette) {
+  setColorPalette(palette: ColorPalette) {
     this.#currentPalette.set(palette);
   }
 }

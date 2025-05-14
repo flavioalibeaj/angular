@@ -2,6 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { StorageKeys } from '../model/storage-keys.enum';
 import { IViewUser } from '../../core/model/i-view-user.interface';
 import { LOCAL_STORAGE } from '../tokens/local-storage.token';
+import { ThemeType } from '../model/theme-type.enum';
+import { ColorPalette } from '../model/color-palette';
 
 @Injectable({
   providedIn: 'root',
@@ -41,5 +43,21 @@ export class StorageService {
 
   removeAccessToken(): void {
     this.#storage.removeItem(StorageKeys.ACCESS_TOKEN);
+  }
+
+  set themeType(theme: ThemeType) {
+    this.#storage.setItem(StorageKeys.THEME_TYPE, theme);
+  }
+
+  get themeType(): string | null {
+    return this.#storage.getItem(StorageKeys.THEME_TYPE);
+  }
+
+  set colorPalette(palette: ColorPalette) {
+    this.#storage.setItem(StorageKeys.COLOR_PALETTE, palette);
+  }
+
+  get colorPalette(): string | null {
+    return this.#storage.getItem(StorageKeys.COLOR_PALETTE);
   }
 }

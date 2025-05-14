@@ -12,6 +12,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
 import { Title } from '@angular/platform-browser';
 import { StorageService } from './shared/services/storage.service';
+import { ThemeService } from './shared/services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -39,6 +40,7 @@ export class AppComponent implements OnInit {
   readonly #spinnerService = inject(NgxSpinnerService);
   readonly #titleService = inject(Title);
   readonly #storage = inject(StorageService);
+  readonly #theme = inject(ThemeService);
 
   // Listen on document visibility
   @HostListener('document:visibilitychange')
