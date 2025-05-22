@@ -21,27 +21,27 @@ import { HandleFieldErrorPipe } from '../../pipes/handle-field-error.pipe';
   template: `
     @let errorMessage = control() | handleFieldError | async;
 
-    <label [id]="'slider-label' + input().label">{{
-      input().label | translate
+    <label [id]="'slider-label' + input().baseFields.label">{{
+      input().baseFields.label | translate
     }}</label>
     <mat-slider
-      [class]="input().inputClass"
-      [attr.aria-labelledby]="'slider-label' + input().label"
+      [class]="input().baseFields.inputClass"
+      [attr.aria-labelledby]="'slider-label' + input().baseFields.label"
       discrete
-      [max]="input().maxValue ?? 100"
-      [min]="input().minValue ?? 0"
-      [step]="input().stepValue ?? 1"
-      [disabled]="input().isReadonly"
+      [max]="input().sliderFields?.maxValue ?? 100"
+      [min]="input().sliderFields?.minValue ?? 0"
+      [step]="input().sliderFields?.stepValue ?? 1"
+      [disabled]="input().baseFields.isReadonly"
     >
-      @if(input().rangeSliderFieldName){
+      @if(input().sliderFields?.rangeSecondField?.fieldName){
       <input [formControl]="control()" matSliderStartThumb />
       <input [formControl]="rangeControl()!" matSliderEndThumb />
       } @else {
       <input matSliderThumb [formControl]="control()" />
       }
     </mat-slider>
-    @if (input().hint) {
-    <mat-hint>{{ input().hint }}</mat-hint>
+    @if (input().baseFields.hint) {
+    <mat-hint>{{ input().baseFields.hint }}</mat-hint>
     } @if(errorMessage){
     <mat-error>{{ errorMessage }}</mat-error>
     }

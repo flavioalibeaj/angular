@@ -21,22 +21,24 @@ import { HandleFieldErrorPipe } from '../../pipes/handle-field-error.pipe';
   template: `
     @let errorMessage = control() | handleFieldError| async;
 
-    <label [id]="'radio-group-label' + input().label">{{
-      input().label | translate
+    <label [id]="'radio-group-label' + input().baseFields.label">{{
+      input().baseFields.label | translate
     }}</label>
     <mat-radio-group
-      [attr.aria-labelledby]="'radio-group-label' + input().label"
-      [class]="input().inputClass"
+      [attr.aria-labelledby]="'radio-group-label' + input().baseFields.label"
+      [class]="input().baseFields.inputClass"
       [formControl]="control()"
     >
-      @for (opt of input().radioOptions; track opt.key) {
-      <mat-radio-button [value]="opt.key" [disabled]="input().isReadonly">{{
-        opt.value
-      }}</mat-radio-button>
+      @for (opt of input().selectFields?.radioOptions; track opt.key) {
+      <mat-radio-button
+        [value]="opt.key"
+        [disabled]="input().baseFields.isReadonly"
+        >{{ opt.value }}</mat-radio-button
+      >
       }
     </mat-radio-group>
-    @if (input().hint) {
-    <mat-hint>{{ input().hint }}</mat-hint>
+    @if (input().baseFields.hint) {
+    <mat-hint>{{ input().baseFields.hint }}</mat-hint>
     } @if(errorMessage){
     <mat-error>{{ errorMessage }}</mat-error>
     }

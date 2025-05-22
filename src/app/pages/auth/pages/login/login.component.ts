@@ -59,18 +59,22 @@ export class LoginComponent implements OnInit {
 
   readonly formModel: IFormModel[] = [
     {
-      fieldType: FieldType.TEXT,
-      fieldName: 'username',
-      label: 'AUTH.username',
-      inputClass: 'w-100',
-      validators: [Validators.required],
+      baseFields: {
+        fieldType: FieldType.TEXT,
+        fieldName: 'username',
+        label: 'AUTH.username',
+        inputClass: 'w-100',
+        validators: [Validators.required],
+      },
     },
     {
-      fieldType: FieldType.PASSWORD,
-      fieldName: 'password',
-      label: 'AUTH.password',
-      inputClass: 'w-100',
-      validators: [Validators.required, Validators.minLength(8)],
+      baseFields: {
+        fieldType: FieldType.PASSWORD,
+        fieldName: 'password',
+        label: 'AUTH.password',
+        inputClass: 'w-100',
+        validators: [Validators.required, Validators.minLength(8)],
+      },
     },
   ];
 
@@ -81,7 +85,7 @@ export class LoginComponent implements OnInit {
       .subscribe((username) => {
         this.matFormComponent()
           .formGroup()
-          .get(this.formModel[0].fieldName)
+          .get(this.formModel[0].baseFields.fieldName)
           ?.setValue(username);
       });
   }

@@ -26,18 +26,18 @@ import { HandleFieldErrorPipe } from '../../pipes/handle-field-error.pipe';
   template: `
     @let errorMessage = control() | handleFieldError | async;
 
-    <mat-form-field [class]="input().inputClass">
-      <mat-label> {{ input().label | translate }} </mat-label>
+    <mat-form-field [class]="input().baseFields.inputClass">
+      <mat-label> {{ input().baseFields.label | translate }} </mat-label>
       <textarea
         matInput
         type="text"
         [formControl]="control()"
-        [readonly]="input().isReadonly"
+        [readonly]="input().baseFields.isReadonly"
       ></textarea>
-      @if (input().hint) {
-      <mat-hint>{{ input().hint }}</mat-hint>
-      } @if (!input().isReadonly && input().clearFieldValue && control().value)
-      {
+      @if (input().baseFields.hint) {
+      <mat-hint>{{ input().baseFields.hint }}</mat-hint>
+      } @if (!input().baseFields.isReadonly &&
+      input().baseFields.clearFieldValue && control().value) {
       <button
         matSuffix
         type="button"

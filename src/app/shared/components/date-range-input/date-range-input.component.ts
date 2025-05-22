@@ -26,36 +26,37 @@ import { HandleFieldErrorPipe } from '../../pipes/handle-field-error.pipe';
     HandleFieldErrorPipe,
   ],
   template: `
-    @let errorMessage = control() | handleFieldError| async; 
-    @let isClearValueShown = !input().isReadonly && input().clearFieldValue &&
-    control().value && rangeControl().value;
+    @let errorMessage = control() | handleFieldError| async; @let
+    isClearValueShown = !input().baseFields.isReadonly &&
+    input().baseFields.clearFieldValue && control().value &&
+    rangeControl().value;
 
-    <mat-form-field [class]="input().inputClass">
-      <mat-label> {{ input().label | translate }} </mat-label>
+    <mat-form-field [class]="input().baseFields.inputClass">
+      <mat-label> {{ input().baseFields.label | translate }} </mat-label>
       <mat-date-range-input
-        [min]="input().minDate"
-        [max]="input().maxDate"
+        [min]="input().dateFields?.minDate"
+        [max]="input().dateFields?.maxDate"
         [rangePicker]="picker"
       >
         <input
           matStartDate
           [formControl]="control()"
-          [readonly]="input().isReadonly"
+          [readonly]="input().baseFields.isReadonly"
         />
         <input
           matEndDate
           [formControl]="rangeControl()"
-          [readonly]="input().isReadonly"
+          [readonly]="input().baseFields.isReadonly"
         />
       </mat-date-range-input>
       <mat-datepicker-toggle
         matIconSuffix
         [for]="picker"
-        [disabled]="input().isReadonly"
+        [disabled]="input().baseFields.isReadonly"
       />
       <mat-date-range-picker #picker />
-      @if (input().hint) {
-      <mat-hint>{{ input().hint }}</mat-hint>
+      @if (input().baseFields.hint) {
+      <mat-hint>{{ input().baseFields.hint }}</mat-hint>
       } @if (isClearValueShown) {
       <button
         matSuffix

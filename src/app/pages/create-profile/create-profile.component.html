@@ -9,13 +9,13 @@
       <form [formGroup]="createProfileService.fg">
         <div class="row">
           <text-input class="col-md-6" [input]="createProfileService.firstNameInput"
-            [control]="createProfileService.fg.get(createProfileService.firstNameInput.fieldName) | formControl" />
+            [control]="createProfileService.fg.get(createProfileService.firstNameInput.baseFields.fieldName) | formControl" />
           <text-input class="col-md-6" [input]="createProfileService.lastNameInput"
-            [control]="createProfileService.fg.get(createProfileService.lastNameInput.fieldName) | formControl" />
+            [control]="createProfileService.fg.get(createProfileService.lastNameInput.baseFields.fieldName) | formControl" />
         </div>
         <div class="row">
           <phone-number-input class="col"
-            [control]="createProfileService.fg.get(createProfileService.phoneNumberInput.fieldName) | formControl"
+            [control]="createProfileService.fg.get(createProfileService.phoneNumberInput.baseFields.fieldName) | formControl"
             [input]="createProfileService.phoneNumberInput" />
           <!-- TODO -->
           <!-- <mat-form-field class="col">
@@ -29,7 +29,7 @@
         </div>
         <div class="row">
           <text-area-input
-            [control]="createProfileService.fg.get(createProfileService.textAreaInput.fieldName) | formControl"
+            [control]="createProfileService.fg.get(createProfileService.textAreaInput.baseFields.fieldName) | formControl"
             [input]="createProfileService.textAreaInput" />
         </div>
       </form>

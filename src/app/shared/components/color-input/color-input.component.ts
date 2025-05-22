@@ -26,8 +26,8 @@ import { HandleFieldErrorPipe } from '../../pipes/handle-field-error.pipe';
   template: `
     @let errorMessage = control() | handleFieldError| async;
 
-    <mat-form-field [class]="input().inputClass">
-      <mat-label> {{ input().label | translate }} </mat-label>
+    <mat-form-field [class]="input().baseFields.inputClass">
+      <mat-label> {{ input().baseFields.label | translate }} </mat-label>
       <input
         type="text"
         matInput
@@ -35,7 +35,7 @@ import { HandleFieldErrorPipe } from '../../pipes/handle-field-error.pipe';
         [formControl]="control()"
         (click)="colorInput.click(); $event.stopImmediatePropagation()"
       />
-      @if (!input().isReadonly) {
+      @if (!input().baseFields.isReadonly) {
       <button
         mat-icon-button
         matSuffix
@@ -44,8 +44,8 @@ import { HandleFieldErrorPipe } from '../../pipes/handle-field-error.pipe';
       >
         <mat-icon>palette</mat-icon>
       </button>
-      } @if (input().hint) {
-      <mat-hint>{{ input().hint }}</mat-hint>
+      } @if (input().baseFields.hint) {
+      <mat-hint>{{ input().baseFields.hint }}</mat-hint>
       } @if(errorMessage){
       <mat-error>{{ errorMessage }}</mat-error>
       }

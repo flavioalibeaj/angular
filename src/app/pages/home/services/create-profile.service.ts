@@ -12,31 +12,39 @@ export class CreateProfileService {
   readonly #translateService = inject(TranslateService);
 
   readonly firstNameInput: IFormModel = {
-    fieldName: 'firstName',
-    fieldType: FieldType.TEXT,
-    label: 'PROFILE.first_name',
-    inputClass: 'w-100',
+    baseFields: {
+      fieldName: 'firstName',
+      fieldType: FieldType.TEXT,
+      label: 'PROFILE.first_name',
+      inputClass: 'w-100',
+    },
   };
 
   readonly lastNameInput: IFormModel = {
-    fieldName: 'lastName',
-    fieldType: FieldType.TEXT,
-    label: 'PROFILE.last_name',
-    inputClass: 'w-100',
+    baseFields: {
+      fieldName: 'lastName',
+      fieldType: FieldType.TEXT,
+      label: 'PROFILE.last_name',
+      inputClass: 'w-100',
+    },
   };
 
   readonly phoneNumberInput: IFormModel = {
-    fieldName: 'phoneNumber',
-    fieldType: FieldType.PHONENUMBER,
-    label: 'PROFILE.phone_number',
-    inputClass: 'w-100',
+    baseFields: {
+      fieldName: 'phoneNumber',
+      fieldType: FieldType.PHONENUMBER,
+      label: 'PROFILE.phone_number',
+      inputClass: 'w-100',
+    },
   };
 
   readonly textAreaInput: IFormModel = {
-    fieldName: 'bio',
-    fieldType: FieldType.TEXTAREA,
-    label: 'PROFILE.biography',
-    inputClass: 'w-100',
+    baseFields: {
+      fieldName: 'bio',
+      fieldType: FieldType.TEXTAREA,
+      label: 'PROFILE.biography',
+      inputClass: 'w-100',
+    },
   };
 
   readonly #getUserSubject = new BehaviorSubject<void>(undefined);

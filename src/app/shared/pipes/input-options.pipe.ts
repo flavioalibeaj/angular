@@ -7,20 +7,22 @@ import { map, Observable, of } from 'rxjs';
   name: 'inputOptions',
 })
 export class InputOptionsPipe implements PipeTransform {
-  transform(input: IFormModel, value?: string): Observable<IOption[]> {
-    if (!input.options) return of([]);
+  transform(
+    { selectFields }: IFormModel,
+    value?: string
+  ): Observable<IOption[]> {
+    if (!selectFields?.options) return of([]);
 
-    if (input.areObservableOptions) {
-      const options = input.options as Observable<IOption[]>;
-      return options.pipe(
-        map((options) =>
-          options.length ? this.#filterOptions(options, value) : []
-        )
-      );
-    }
+    if (selectFields.areObservableOptions)
+      return of(this.#filterOptions(<IOption[]>selectFields.options, value));
 
-    const options = input.options as IOption[];
-    return of(this.#filterOptions(options, value));
+    const options = selectFields.options as Observable<IOption[]>;
+
+    return options.pipe(
+      map((options) =>
+        options.length ? this.#filterOptions(options, value) : []
+      )
+    );
   }
 
   #filterOptions(options: IOption[], inputValue?: string): IOption[] {

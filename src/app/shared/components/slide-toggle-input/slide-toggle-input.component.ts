@@ -21,11 +21,14 @@ import { HandleFieldErrorPipe } from '../../pipes/handle-field-error.pipe';
   template: `
     @let errorMessage = control() | handleFieldError| async;
 
-    <mat-slide-toggle [class]="input().inputClass" [formControl]="control()">
-      {{ input().label | translate }}
+    <mat-slide-toggle
+      [class]="input().baseFields.inputClass"
+      [formControl]="control()"
+    >
+      {{ input().baseFields.label | translate }}
     </mat-slide-toggle>
-    @if (input().hint) {
-    <mat-hint>{{ input().hint }}</mat-hint>
+    @if (input().baseFields.hint) {
+    <mat-hint>{{ input().baseFields.hint }}</mat-hint>
     } @if(errorMessage){
     <mat-error>{{ errorMessage }}</mat-error>
     }

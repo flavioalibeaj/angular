@@ -11,26 +11,34 @@ export class RegisterService {
 
   readonly formModel: IFormModel[] = [
     {
-      fieldType: FieldType.TEXT,
-      fieldName: 'username',
-      label: 'AUTH.username',
-      validators: [Validators.required],
-      inputClass: 'w-100',
+      baseFields: {
+        fieldType: FieldType.TEXT,
+        fieldName: 'username',
+        label: 'AUTH.username',
+        validators: [Validators.required],
+        inputClass: 'w-100',
+      },
     },
     {
-      fieldType: FieldType.PASSWORD,
-      fieldName: 'password',
-      label: 'AUTH.password',
-      validators: [Validators.required, Validators.minLength(8)],
-      inputClass: 'w-100',
+      baseFields: {
+        fieldType: FieldType.PASSWORD,
+        fieldName: 'password',
+        label: 'AUTH.password',
+        validators: [Validators.required, Validators.minLength(8)],
+        inputClass: 'w-100',
+      },
     },
     {
-      fieldType: FieldType.PASSWORD,
-      fieldName: 'confirmPassword',
-      label: 'AUTH.confirm_password',
-      validators: [Validators.required, Validators.minLength(8)],
-      inputClass: 'w-100',
-      hidePasswordToggle: true,
+      baseFields: {
+        fieldType: FieldType.PASSWORD,
+        fieldName: 'confirmPassword',
+        label: 'AUTH.confirm_password',
+        validators: [Validators.required, Validators.minLength(8)],
+        inputClass: 'w-100',
+      },
+      passwordFields: {
+        hideToggle: true,
+      },
     },
   ];
 

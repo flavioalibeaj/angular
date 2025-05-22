@@ -31,15 +31,15 @@ import { InputOptionsPipe } from '../../pipes/input-options.pipe';
   template: `
     @let errorMessage = control() | handleFieldError| async;
 
-    <mat-form-field [class]="input().inputClass">
-      <mat-label>{{ input().label | translate }}</mat-label>
+    <mat-form-field [class]="input().baseFields.inputClass">
+      <mat-label>{{ input().baseFields.label | translate }}</mat-label>
       <input
         #inputRef
         type="text"
         matInput
         [matAutocomplete]="auto"
         [formControl]="control()"
-        [readonly]="input().isReadonly"
+        [readonly]="input().baseFields.isReadonly"
       />
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
         @for (opt of input() | inputOptions: inputRef.value | async; track
@@ -49,14 +49,14 @@ import { InputOptionsPipe } from '../../pipes/input-options.pipe';
         </mat-option>
         }
       </mat-autocomplete>
-      @if (input().prefixIcon) {
-      <mat-icon matPrefix>{{ input().prefixIcon }}</mat-icon>
-      } @if (input().suffixIcon) {
-      <mat-icon matSuffix>{{ input().suffixIcon }}</mat-icon>
-      } @if (input().hint) {
-      <mat-hint>{{ input().hint }}</mat-hint>
-      } @if (!input().isReadonly && input().clearFieldValue && control().value)
-      {
+      @if (input().baseFields.prefixIcon) {
+      <mat-icon matPrefix>{{ input().baseFields.prefixIcon }}</mat-icon>
+      } @if (input().baseFields.suffixIcon) {
+      <mat-icon matSuffix>{{ input().baseFields.suffixIcon }}</mat-icon>
+      } @if (input().baseFields.hint) {
+      <mat-hint>{{ input().baseFields.hint }}</mat-hint>
+      } @if (!input().baseFields.isReadonly &&
+      input().baseFields.clearFieldValue && control().value) {
       <button
         matSuffix
         type="button"

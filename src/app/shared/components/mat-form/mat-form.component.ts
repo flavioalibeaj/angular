@@ -89,79 +89,7 @@ export class MatFormComponent<T> {
   readonly contentProjection = input<boolean>();
 
   readonly formSubmit = output<IFormResponse<T>>();
-  readonly formGroup = computed(() => {
-    const fg = new FormGroup({});
-
-    this.formModel().forEach((input) => {
-      switch (input.fieldType) {
-        case FieldType.DATERANGE:
-          fg.addControl(
-            input.fieldName,
-            new FormControl(input.fieldValue, input.validators)
-          );
-          fg.addControl(
-            input.dateRangeSecondFieldName ?? '',
-            new FormControl(
-              input.dateRangeSecondFieldValue,
-              input.dateRangeSecondFieldValidators
-            )
-          );
-          break;
-
-        case FieldType.COLOR:
-          fg.addControl(
-            input.fieldName,
-            new FormControl(input.fieldValue ?? this.#blackColor, [
-              ...(input.validators ?? []),
-              Validators.required,
-              Validators.pattern(/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/),
-            ])
-          );
-          break;
-
-        case FieldType.CHECKBOX:
-        case FieldType.SLIDETOGGLE:
-          fg.addControl(
-            input.fieldName,
-            new FormControl({
-              disabled: input.isReadonly,
-              value: input.fieldValue ?? false,
-            })
-          );
-          break;
-
-        case FieldType.SLIDER:
-          fg.addControl(
-            input.fieldName,
-            new FormControl(input.fieldValue ?? 0, [
-              ...(input.validators ?? []),
-              Validators.max(input.maxValue ?? 100),
-              Validators.min(input.minValue ?? 0),
-            ])
-          );
-          if (input.rangeSliderFieldName) {
-            fg.addControl(
-              input.rangeSliderFieldName,
-              new FormControl(input.rangeSliderFieldValue ?? 100, [
-                ...(input.validators ?? []),
-                Validators.max(input.maxValue ?? 100),
-                Validators.min(input.minValue ?? 0),
-              ])
-            );
-          }
-          break;
-
-        default:
-          fg.addControl(
-            input.fieldName,
-            new FormControl(input.fieldValue, input.validators)
-          );
-          break;
-      }
-    });
-
-    return fg;
-  });
+  readonly formGroup = computed(() => this.#buildFormGroup());
   readonly #blackColor: string = '#000000';
   protected readonly FieldType: typeof FieldType = FieldType;
 
@@ -183,5 +111,79 @@ export class MatFormComponent<T> {
       submitted: true,
       formData: this.formGroup().getRawValue() as T,
     });
+  }
+
+  #buildFormGroup() {
+    const fg = new FormGroup({});
+
+    this.formModel().forEach(({ baseFields, dateFields, sliderFields }) => {
+      switch (baseFields.fieldType) {
+        case FieldType.DATERANGE:
+          fg.addControl(
+            baseFields.fieldName,
+            new FormControl(baseFields.fieldValue, baseFields.validators)
+          );
+          fg.addControl(
+            dateFields?.rangeSecondField?.fieldName ?? '',
+            new FormControl(
+              dateFields?.rangeSecondField?.fieldValue,
+              dateFields?.rangeSecondField?.validators
+            )
+          );
+          break;
+
+        case FieldType.COLOR:
+          fg.addControl(
+            baseFields.fieldName,
+            new FormControl(baseFields.fieldValue ?? this.#blackColor, [
+              ...(baseFields.validators ?? []),
+              Validators.required,
+              Validators.pattern(/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/),
+            ])
+          );
+          break;
+
+        case FieldType.CHECKBOX:
+        case FieldType.SLIDETOGGLE:
+          fg.addControl(
+            baseFields.fieldName,
+            new FormControl({
+              disabled: baseFields.isReadonly,
+              value: baseFields.fieldValue ?? false,
+            })
+          );
+          break;
+
+        case FieldType.SLIDER:
+          fg.addControl(
+            baseFields.fieldName,
+            new FormControl(baseFields.fieldValue ?? 0, [
+              ...(baseFields.validators ?? []),
+              Validators.max(sliderFields?.maxValue ?? 100),
+              Validators.min(sliderFields?.minValue ?? 0),
+            ])
+          );
+          if (sliderFields?.rangeSecondField?.fieldName) {
+            fg.addControl(
+              sliderFields.rangeSecondField.fieldName,
+              new FormControl(sliderFields.rangeSecondField.fieldValue ?? 100, [
+                ...(baseFields.validators ?? []),
+                Validators.max(sliderFields.maxValue ?? 100),
+                Validators.min(sliderFields.minValue ?? 0),
+              ])
+            );
+          }
+          break;
+
+        default:
+          fg.addControl(
+            baseFields.fieldName,
+            new FormControl(baseFields.fieldValue, baseFields.validators)
+          );
+          break;
+      }
+    });
+
+    return fg;
   }
 }

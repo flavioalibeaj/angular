@@ -1,8 +1,8 @@
 <form [formGroup]="formGroup()" [class]="formClass()">
-  @for (input of formModel(); track input.fieldName) {
-  @let control = formGroup().get(input.fieldName) | formControl;
+  @for (input of formModel(); track input.baseFields.fieldName) {
+  @let control = formGroup().get(input.baseFields.fieldName) | formControl;
 
-  @switch (input.fieldType) {
+  @switch (input.baseFields.fieldType) {
   @case (FieldType.TEXT) { <text-input [input]="input" [control]="control" /> }
   @case (FieldType.TEXTAREA) { <text-area-input [input]="input" [control]="control" /> }
   @case (FieldType.NUMBER) { <number-input [input]="input" [control]="control" /> }
@@ -11,7 +11,7 @@
   }
   @case (FieldType.DATEPICKER) { <date-picker-input [control]="control" [input]="input" /> }
   @case (FieldType.DATERANGE) {
-  @let rangeControl = formGroup().get(input.dateRangeSecondFieldName ?? '') | formControl;
+  @let rangeControl = formGroup().get(input.dateFields?.rangeSecondField?.fieldName ?? '') | formControl;
   <date-range-input [control]="control" [input]="input" [rangeControl]="rangeControl" />
   }
   @case (FieldType.RADIO) { <radio-input [control]="control" [input]="input" /> }
@@ -20,9 +20,8 @@
   @case (FieldType.SLIDETOGGLE) { <slide-toggle-input [input]="input" [control]="control" /> }
   @case (FieldType.FILE) { <file-input /> }
   @case (FieldType.SLIDER) {
-  @let rangeControl = input.rangeSliderFieldName
-  ? (formGroup().get(input.rangeSliderFieldName) | formControl)
-  : undefined;
+  @let fieldName = input.sliderFields?.rangeSecondField?.fieldName;
+  @let rangeControl = fieldName ? (formGroup().get(fieldName) | formControl) : undefined;
   <slider-input [input]="input" [control]="control" [rangeControl]="rangeControl" />
   }
   @case (FieldType.AUTOCOMPLETE) { <autocomplete-input [input]="input" [control]="control" /> }

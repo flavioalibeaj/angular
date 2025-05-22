@@ -24,7 +24,8 @@ import { HandleFieldErrorPipe } from '../../pipes/handle-field-error.pipe';
     HandleFieldErrorPipe,
   ],
   template: `
-    @let errorMessage = control() | handleFieldError| async;
+    <!-- TODO -->
+    <!-- @let errorMessage = control() | handleFieldError| async;
 
     <mat-form-field [class]="input().inputClass">
       <mat-label> {{ input().label | translate }} </mat-label>
@@ -56,7 +57,7 @@ import { HandleFieldErrorPipe } from '../../pipes/handle-field-error.pipe';
       } @if(errorMessage){
       <mat-error>{{ errorMessage }}</mat-error>
       }
-    </mat-form-field>
+    </mat-form-field> -->
   `,
 })
 export class PhoneNumberInputComponent {

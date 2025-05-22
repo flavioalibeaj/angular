@@ -4,6 +4,14 @@ import { IOption } from './i-option.interface';
 import { Observable } from 'rxjs';
 
 export interface IFormModel {
+  baseFields: IBaseFields;
+  dateFields?: IDateFields;
+  sliderFields?: ISliderFields;
+  passwordFields?: IPasswordFields;
+  selectFields?: ISelectableInputFields;
+}
+
+interface IBaseFields {
   fieldName: string;
   fieldType: FieldType;
   label: string;
@@ -12,22 +20,34 @@ export interface IFormModel {
   validators?: ValidatorFn[];
   isReadonly?: boolean;
   clearFieldValue?: boolean; // set true for optional fields
+  hint?: string;
+  prefixIcon?: string;
+  suffixIcon?: string;
+}
+
+interface IDateFields {
   minDate?: Date;
   maxDate?: Date;
-  dateRangeSecondFieldName?: string;
-  dateRangeSecondFieldValue?: Date;
-  dateRangeSecondFieldValidators?: ValidatorFn[];
+  rangeSecondField?: Pick<
+    IBaseFields,
+    'fieldName' | 'fieldValue' | 'validators'
+  >;
+}
+
+interface IPasswordFields {
+  hideToggle?: boolean;
+}
+
+interface ISliderFields {
+  maxValue?: number;
+  minValue?: number;
+  stepValue?: number;
+  rangeSecondField?: Pick<IBaseFields, 'fieldName' | 'fieldValue'>;
+}
+
+interface ISelectableInputFields {
   options?: IOption[] | Observable<IOption[]>;
   areObservableOptions?: boolean; // set to true if the options being passed are a stream
   isMultiSelect?: boolean;
   radioOptions?: IOption[];
-  prefixIcon?: string;
-  suffixIcon?: string;
-  hint?: string;
-  maxValue?: number;
-  minValue?: number;
-  stepValue?: number;
-  rangeSliderFieldName?: string;
-  rangeSliderFieldValue?: unknown;
-  hidePasswordToggle?: boolean;
 }

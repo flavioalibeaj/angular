@@ -19,14 +19,15 @@ import { HandleFieldErrorPipe } from '../../pipes/handle-field-error.pipe';
     HandleFieldErrorPipe,
   ],
   template: `
-    <mat-checkbox [class]="input().inputClass" [formControl]="control()">
-      {{ input().label | translate }}</mat-checkbox
+    <mat-checkbox
+      [class]="input().baseFields.inputClass"
+      [formControl]="control()"
     >
-    @if (input().hint) {
-    <mat-hint>{{ input().hint }}</mat-hint>
-    }
-
-    @let errorMessage = control() | handleFieldError| async;
+      {{ input().baseFields.label | translate }}</mat-checkbox
+    >
+    @if (input().baseFields.hint) {
+    <mat-hint>{{ input().baseFields.hint }}</mat-hint>
+    } @let errorMessage = control() | handleFieldError| async;
     @if(errorMessage){
     <mat-error>{{ errorMessage }}</mat-error>
     }

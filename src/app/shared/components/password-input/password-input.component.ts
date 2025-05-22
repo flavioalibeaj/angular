@@ -25,14 +25,14 @@ import { HandleFieldErrorPipe } from '../../pipes/handle-field-error.pipe';
   ],
   template: `
     @let errorMessage = control() | handleFieldError| async;
-    <mat-form-field [class]="input().inputClass">
-      <mat-label> {{ input().label | translate }} </mat-label>
+    <mat-form-field [class]="input().baseFields.inputClass">
+      <mat-label> {{ input().baseFields.label | translate }} </mat-label>
       <input
         matInput
         [type]="hidePassword ? 'password' : 'text'"
         [formControl]="control()"
       />
-      @if (!input().hidePasswordToggle) {
+      @if (!input().passwordFields?.hideToggle) {
       <button
         mat-icon-button
         matSuffix

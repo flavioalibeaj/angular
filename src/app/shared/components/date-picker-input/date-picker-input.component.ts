@@ -28,26 +28,26 @@ import { HandleFieldErrorPipe } from '../../pipes/handle-field-error.pipe';
   template: `
     @let errorMessage = control() | handleFieldError| async;
 
-    <mat-form-field [class]="input().inputClass">
-      <mat-label> {{ input().label | translate }} </mat-label>
+    <mat-form-field [class]="input().baseFields.inputClass">
+      <mat-label> {{ input().baseFields.label | translate }} </mat-label>
       <input
         matInput
-        [min]="input().minDate"
-        [max]="input().maxDate"
+        [min]="input().dateFields?.minDate"
+        [max]="input().dateFields?.maxDate"
         [matDatepicker]="picker"
         [formControl]="control()"
-        [readonly]="input().isReadonly"
+        [readonly]="input().baseFields.isReadonly"
       />
       <mat-datepicker-toggle
         matIconSuffix
         [for]="picker"
-        [disabled]="input().isReadonly"
+        [disabled]="input().baseFields.isReadonly"
       />
       <mat-datepicker #picker />
-      @if (input().hint) {
-      <mat-hint>{{ input().hint }}</mat-hint>
-      } @if (!input().isReadonly && input().clearFieldValue && control().value)
-      {
+      @if (input().baseFields.hint) {
+      <mat-hint>{{ input().baseFields.hint }}</mat-hint>
+      } @if (!input().baseFields.isReadonly &&
+      input().baseFields.clearFieldValue && control().value) {
       <button
         matSuffix
         type="button"
