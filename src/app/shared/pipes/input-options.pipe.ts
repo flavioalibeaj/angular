@@ -13,7 +13,7 @@ export class InputOptionsPipe implements PipeTransform {
   ): Observable<IOption[]> {
     if (!selectFields?.options) return of([]);
 
-    if (selectFields.areObservableOptions)
+    if (selectFields.isObservable)
       return of(this.#filterOptions(<IOption[]>selectFields.options, value));
 
     const options = selectFields.options as Observable<IOption[]>;

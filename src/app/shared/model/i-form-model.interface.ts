@@ -47,7 +47,7 @@ interface ISliderFields {
 
 interface ISelectableInputFields {
   options?: IOption[] | Observable<IOption[]>;
-  areObservableOptions?: boolean; // set to true if the options being passed are a stream
+  isObservable?: boolean; // set to true if the options being passed are a stream
   isMultiSelect?: boolean;
   radioOptions?: IOption[];
 }
