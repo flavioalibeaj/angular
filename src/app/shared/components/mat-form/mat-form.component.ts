@@ -178,7 +178,16 @@ export class MatFormComponent<T> {
         default:
           fg.addControl(
             baseFields.fieldName,
-            new FormControl(baseFields.fieldValue, baseFields.validators)
+            new FormControl(
+              { value: baseFields.fieldValue, disabled: baseFields.isReadonly },
+              {
+                validators: [
+                  ...(baseFields.validators ?? []),
+                  ...(baseFields.isRequired ? [Validators.required] : []),
+                ],
+                nonNullable: baseFields.isRequired,
+              }
+            )
           );
           break;
       }
@@ -187,3 +196,88 @@ export class MatFormComponent<T> {
     return fg;
   }
 }
+
+// #buildFormGroup() {
+//   const fg = new FormGroup({});
+
+//   const addControl = (baseFields: IBaseFields) => {
+//     fg.addControl(
+//       baseFields.fieldName,
+//       new FormControl(
+//         { value: baseFields.fieldValue, disabled: baseFields.isReadonly },
+//         {
+//           validators: baseFields.validators,
+//           nonNullable: baseFields.isRequired,
+//         }
+//       )
+//     );
+//   };
+
+//   this.formModel().forEach(({ baseFields, dateFields, sliderFields }) => {
+//     switch (baseFields.fieldType) {
+//       case FieldType.DATERANGE:
+//         addControl(baseFields);
+
+//         if (dateFields?.rangeSecondField?.fieldName)
+//           addControl({
+//             ...baseFields,
+//             fieldName: dateFields.rangeSecondField?.fieldName,
+//             fieldValue: dateFields?.rangeSecondField?.fieldValue,
+//             validators: dateFields?.rangeSecondField?.validators,
+//           });
+
+//         break;
+
+//       case FieldType.COLOR:
+//         addControl({
+//           ...baseFields,
+//           fieldValue: baseFields.fieldValue ?? this.#blackColor,
+//           validators: [
+//             ...(baseFields.validators ?? []),
+//             Validators.required,
+//             Validators.pattern(/^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/),
+//           ],
+//         });
+//         break;
+
+//       case FieldType.CHECKBOX:
+//       case FieldType.SLIDETOGGLE:
+//         addControl({
+//           ...baseFields,
+//           fieldValue: baseFields.fieldValue ?? false,
+//         });
+//         break;
+
+//       case FieldType.SLIDER:
+//         addControl({
+//           ...baseFields,
+//           fieldValue: baseFields.fieldValue ?? 0,
+//           validators: [
+//             ...(baseFields.validators ?? []),
+//             Validators.max(sliderFields?.maxValue ?? 100),
+//             Validators.min(sliderFields?.minValue ?? 0),
+//           ],
+//         });
+
+//         if (sliderFields?.rangeSecondField?.fieldName) {
+//           addControl({
+//             ...baseFields,
+//             fieldName: sliderFields.rangeSecondField.fieldName,
+//             fieldValue: sliderFields.rangeSecondField.fieldValue ?? 100,
+//             validators: [
+//               ...(baseFields.validators ?? []),
+//               Validators.max(sliderFields.maxValue ?? 100),
+//               Validators.min(sliderFields.minValue ?? 0),
+//             ],
+//           });
+//         }
+//         break;
+
+//       default:
+//         addControl(baseFields);
+//         break;
+//     }
+//   });
+
+//   return fg;
+// }

@@ -7,12 +7,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { switchMap, take } from 'rxjs';
+import { map, of, switchMap, take } from 'rxjs';
 import { AuthService } from '../../../../core/services/auth.service';
 import { MatFormComponent } from '../../../../shared/components/mat-form/mat-form.component';
 import { FieldType } from '../../../../shared/model/field-type.enum';
 import { IFormModel } from '../../../../shared/model/i-form-model.interface';
 import { IFormResponse } from '../../../../shared/model/i-form-response.interface';
+import { IOption } from '../../../../shared/model/i-option.interface';
+import { HttpService } from '../../../../shared/services/http.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -56,24 +59,28 @@ import { IFormResponse } from '../../../../shared/model/i-form-response.interfac
 export class LoginComponent implements OnInit {
   readonly #authService = inject(AuthService);
   readonly matFormComponent = viewChild.required(MatFormComponent);
+  http = inject(HttpClient);
 
   readonly formModel: IFormModel[] = [
     {
       baseFields: {
-        fieldType: FieldType.TEXT,
-        fieldName: 'username',
-        label: 'AUTH.username',
+        fieldType: FieldType.SELECT,
+        fieldName: 'todos',
+        label: 'AUTH.todos',
         inputClass: 'w-100',
-        validators: [Validators.required],
+        // isReadonly: true,
+        isRequired: true,
+        clearFieldValue: true,
       },
-    },
-    {
-      baseFields: {
-        fieldType: FieldType.PASSWORD,
-        fieldName: 'password',
-        label: 'AUTH.password',
-        inputClass: 'w-100',
-        validators: [Validators.required, Validators.minLength(8)],
+      selectFields: {
+        isMultiSelect: true,
+        options: this.http
+          .get<any>('https://jsonplaceholder.typicode.com/todos')
+          .pipe(
+            map<any[], IOption[]>((x) =>
+              x.map((y) => ({ key: y.id, value: y.title }))
+            )
+          ),
       },
     },
   ];
@@ -91,12 +98,14 @@ export class LoginComponent implements OnInit {
   }
 
   login({ formData }: IFormResponse<{ password: string; username: string }>) {
-    if (!formData) return;
-    const { password, username } = formData;
+    // if (!formData) return;
+    // const { password, username } = formData;
 
-    this.#authService
-      .login({ password: password, username: username })
-      .pipe(switchMap(() => this.#authService.setUsernameInCache(username)))
-      .subscribe();
+    // this.#authService
+    //   .login({ password: password, username: username })
+    //   .pipe(switchMap(() => this.#authService.setUsernameInCache(username)))
+    //   .subscribe();
+
+    console.log(formData);
   }
 }
