@@ -25,7 +25,7 @@
   <slider-input [input]="input" [control]="control" [rangeControl]="rangeControl" />
   }
   @case (FieldType.AUTOCOMPLETE) { <autocomplete-input [input]="input" [control]="control" /> }
-  @case (FieldType.SELECT) { <select-input /> }
+  @case (FieldType.SELECT) { <select-input [input]="input" [control]="control" /> }
   @case (FieldType.MULTISELECTAUTOCOMPLETE) { <multi-select-auto-complete-input /> }
   @case (FieldType.TIMEPICKER) { <time-picker-input /> }
   @case (FieldType.PHONENUMBER) { <phone-number-input [input]="input" [control]="control" /> }

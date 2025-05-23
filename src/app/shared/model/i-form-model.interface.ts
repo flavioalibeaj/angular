@@ -1,7 +1,8 @@
-import { ValidatorFn } from '@angular/forms';
-import { FieldType } from './field-type.enum';
-import { IOption } from './i-option.interface';
-import { Observable } from 'rxjs';
+import { IBaseFields } from './i-form-base-fields.interface';
+import { IDateFields } from './i-date-fields.interface';
+import { ISliderFields } from './i-slider-fields.interface';
+import { IPasswordFields } from './i-password-fields.interface';
+import { ISelectableInputFields } from './i-selectable-input-fields.interface';
 
 export interface IFormModel {
   baseFields: IBaseFields;
@@ -9,45 +10,4 @@ export interface IFormModel {
   sliderFields?: ISliderFields;
   passwordFields?: IPasswordFields;
   selectFields?: ISelectableInputFields;
-}
-
-interface IBaseFields {
-  fieldName: string;
-  fieldType: FieldType;
-  label: string;
-  fieldValue?: unknown;
-  inputClass?: string;
-  validators?: ValidatorFn[];
-  isReadonly?: boolean;
-  clearFieldValue?: boolean; // set true for optional fields
-  hint?: string;
-  prefixIcon?: string;
-  suffixIcon?: string;
-}
-
-interface IDateFields {
-  minDate?: Date;
-  maxDate?: Date;
-  rangeSecondField?: Pick<
-    IBaseFields,
-    'fieldName' | 'fieldValue' | 'validators'
-  >;
-}
-
-interface IPasswordFields {
-  hideToggle?: boolean;
-}
-
-interface ISliderFields {
-  maxValue?: number;
-  minValue?: number;
-  stepValue?: number;
-  rangeSecondField?: Pick<IBaseFields, 'fieldName' | 'fieldValue'>;
-}
-
-interface ISelectableInputFields {
-  options?: IOption[] | Observable<IOption[]>;
-  isObservable?: boolean; // set to true if the options being passed are a stream
-  isMultiSelect?: boolean;
-  radioOptions?: IOption[];
 }
