@@ -6,12 +6,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslatePipe } from '@ngx-translate/core';
-import { CreateProfileService } from '../home/services/create-profile.service';
-import { PhoneNumberInputComponent } from '../../shared/components/phone-number-input/phone-number-input.component';
-import { TextAreaInputComponent } from '../../shared/components/text-area-input/text-area-input.component';
-import { TextInputComponent } from '../../shared/components/text-input/text-input.component';
-import { FormControlPipe } from '../../shared/pipes/form-control.pipe';
-import { UserService } from '../../core/services/user.service';
+import { PhoneNumberInputComponent } from '../../components/phone-number-input/phone-number-input.component';
+import { TextAreaInputComponent } from '../../components/text-area-input/text-area-input.component';
+import { TextInputComponent } from '../../components/text-input/text-input.component';
+import { FormControlPipe } from '../../pipes/form-control.pipe';
+import { CreateProfileService } from '../../services/create-profile.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-create-profile',

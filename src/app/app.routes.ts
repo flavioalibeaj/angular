@@ -1,15 +1,15 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './core/guards/auth.guard';
-import { createProfileGuard } from './pages/home/guards/create-profile.guard';
-import { authRoutes } from './pages/auth/auth.routes';
-import { homeRoutes } from './pages/home/home.routes';
+import { authGuard } from './guards/auth.guard';
+import { createProfileGuard } from './guards/create-profile.guard';
+import { authRoutes } from './routes/auth.routes';
+import { homeRoutes } from './routes/home.routes';
 
 export const routes: Routes = [
   {
     path: 'auth',
     canActivate: [authGuard],
     loadComponent: () =>
-      import('./pages/auth/pages/auth.component').then((c) => c.AuthComponent),
+      import('./layouts/auth.component').then((c) => c.AuthComponent),
     children: authRoutes,
   },
   {
@@ -20,7 +20,7 @@ export const routes: Routes = [
     },
     // canActivate: [authGuard, createProfileGuard],
     loadComponent: () =>
-      import('./pages/home/home.component').then((c) => c.HomeComponent),
+      import('./layouts/home.component').then((c) => c.HomeComponent),
     children: homeRoutes,
   },
   {

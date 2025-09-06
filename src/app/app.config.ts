@@ -21,9 +21,7 @@ import {
   withFetch,
   withInterceptors,
 } from '@angular/common/http';
-import { httpInterceptor } from './core/interceptors/http.interceptor';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
-import { GlobalErrorHandlerService } from './core/error-handler/global-error-handler.service';
 import { TranslateLoader, provideTranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -31,8 +29,10 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MAT_AUTOCOMPLETE_DEFAULT_OPTIONS } from '@angular/material/autocomplete';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MAT_CARD_CONFIG } from '@angular/material/card';
-import { PreloadingService } from './shared/services/preloading.service';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { PreloadingService } from './services/preloading.service';
+import { httpInterceptor } from './interceptors/http.interceptor';
+import { GlobalErrorHandlerService } from './services/global-error-handler.service';
 
 const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (
   http: HttpClient
