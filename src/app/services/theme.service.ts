@@ -1,6 +1,6 @@
-import { effect, inject, Injectable, signal } from '@angular/core';
+import { effect, inject, Injectable, signal, DOCUMENT } from '@angular/core';
 import { ThemeType } from '../model/theme-type.enum';
-import { DOCUMENT } from '@angular/common';
+
 import { ColorPalette } from '../model/color-palette';
 import { ITheme } from '../model/i-theme.interface';
 import { FormControl } from '@angular/forms';
